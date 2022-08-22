@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result booklet</title>
+    <!-- <link rel="stylesheet" href="/template.css"> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* height: 100vh; */
+            display: grid;
+            place-items: center;
+            margin: 20px;
+        }
+
+        .temp-container {
+            border: black 1px solid;
+            /* height: 120vh; */
+            width: 80vw;
+            padding: 50px;
+            /* background: red; */
+        }
+
+
+        .heading1 {
+            text-align: center;
+            font-size: 14px;
+            font-size: 1rem;
+        }
+
+        .heading1 h1 {
+            color: rgb(9, 9, 97);
+            font-size: 14px;
+            margin: 4px;
+        }
+
+        .heading1 h6 {
+            font-size: 12px;
+            margin: 3px 0;
+            /* color: pink; */
+        }
+
+        .heading1 h6 span,
+        .heading2 .heading2Item h4 {
+            color: red;
+            font-weight: 600;
+            /* font-style: italic; */
+        }
+
+        .heading2 .heading2Item h4 {
+            font-size: 13px;
+        }
+
+        .heading1 h5 {
+            color: rgb(226, 8, 8);
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .heading2 {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .heading2 .heading2Item p {
+            font-size: 10px;
+            color: royalblue;
+        }
+
+        .class-cat-head {
+            background-color: rgb(6, 6, 117);
+            color: white;
+            font-size: 13px;
+            text-align: center;
+            margin: 2px;
+            padding: 2px;
+        }
+
+        .student-details {
+            height: 30px;
+            padding: 2px 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .student-name {
+            width: 100%;
+            font-size: 10px;
+            display: flex;
+            padding-bottom: 4px;
+        }
+
+        .student-name .span-content {
+            flex: 1;
+            margin-left: 5px;
+            border-bottom: 1px dotted black;
+        }
+
+        .student-details-span2 {
+            display: flex;
+            font-size: 10px;
+        }
+
+        .student-details-span2 .student-class {
+            display: flex;
+            flex: 0.5;
+            padding-bottom: 4px;
+        }
+
+        .student-details-span2 .student-class .span-content,
+        .student-details-span2 .student-examNo .span-content {
+            flex: 1;
+            margin-left: 5px;
+            border-bottom: 1px dotted black;
+        }
+
+        .student-details-span2 .student-examNo {
+            flex: 0.5;
+            display: flex;
+            padding-bottom: 4px;
+        }
+
+        .student-details-span2 .student-term {
+            flex: 0.55;
+            display: flex;
+        }
+
+        .student-details-span2 .student-session {
+            flex: 0.45;
+            display: flex;
+        }
+
+        .student-details-span2 .student-session .span-content,
+        .student-details-span2 .student-term .span-content {
+            flex: 1;
+            border-bottom: 1px dotted black;
+        }
+
+        .details-title {
+            color: rgb(11, 11, 145);
+            font-size: 11px;
+            text-align: center;
+            font-weight: 800;
+            margin-top: 25px;
+            /* background: red; */
+        }
+
+        table {
+            border: 2px solid rgb(197, 5, 5);
+            width: 100%;
+            margin: 7px auto;
+            padding: 4px 10px;
+            border-collapse: collapse;
+        }
+
+        table tr {
+            /* background-color: blue; */
+            height: 15px;
+            border: 1px solid rgb(121, 3, 3);
+        }
+
+        tr:nth-child(1),
+        td:nth-child(1) {
+            padding: 0 15px;
+            /* font-weight: 600; */
+            font-family: sans-serif;
+        }
+
+        tr,
+        td {
+            padding: 0 5px;
+            font-size: 10px;
+        }
+
+        table th,
+        table td {
+            border: 1px solid rgb(155, 3, 3);
+        }
+
+        footer {
+            margin-top: 10px;
+        }
+
+        .footer-row {
+            display: flex;
+            /* font-weight: 600; */
+            padding: 2px 0;
+            margin: 2px 0 0 0;
+            color: rgb(39, 39, 243);
+            font-size: 12px;
+        }
+
+        .footer-row .span-content {
+            flex: 1;
+            border-bottom: 1px solid black;
+            margin-left: 4px;
+        }
+
+        .footer-comment {
+            flex: 1;
+            display: flex;
+        }
+
+        .footer-score,
+        .footer-position,
+        .footer-score,
+        .footer-out-of {
+            flex: 1;
+            display: flex;
+        }
+
+
+        .footer-resumption {
+            display: flex;
+            flex: 0.6;
+        }
+
+        .footer-principal {
+            display: flex;
+            flex: 0.4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="temp-container">
+        <header>
+            <div class="heading1">
+                <!-- <h2>ANAMBRA STATE SCHOOL SYSTEM</h2> -->
+                <h1>DE SOLUTION MODEL SECONDARY SCHOOL</h1>
+                <h5>(Government Approved)</h5>
+                <h6><span>Motto:</span> Knowledge and Fear of God</h6>
+            </div>
+            <div class="heading2">
+                <div class="heading2Item">
+                    <h4>Campus 1</h4>
+                    <p>Umukwa Road</p>
+                    <p>Behind St. Faith Anglican</p>
+                    <p>Church Awka</p>
+                </div>
+                <div class="heading2Item">
+                    <h4>Campus 2</h4>
+                    <p>Akamanato Mgbakwu,</p>
+                    <p>Awka,</p>
+                    <p>Anambra State</p>
+                </div>
+                <div class="heading2Item">
+                    <h4>Campus 3</h4>
+                    <p>No. 67 Goody Ezenagu Avenue</p>
+                    <p>Amaede village, Mgbakwu,</p>
+                    <p>Anambra State</p>
+                </div>
+            </div>
+        </header>
+        <h1 class="class-cat-head">STATEMENT OF RESULT FOR JUNIOR SECONDARY SCHOOL.</h1>
+        <div class="student-details">
+            <p class="student-name">Name: <span class="span-content">
+                    <%= result.student.firstName %>
+                        <%= result.student.middleName %>
+                            <%= result.student.lastName %>
+                </span></p>
+            <p class="student-details-span2">
+                <span class="student-class">Class:<span class="span-content"></span></span>
+                <span class="student-examNo">Exam. No: <span class="span-content">
+                        <%= result.student.loginID %>
+                    </span></span>
+            </p>
+            <p class="student-details-span2">
+                <span class="student-term">Term: <span class="span-content">
+                        <%= result.term %>
+                    </span></span>
+                <span class="student-session">Session: <span class="span-content">
+                        <%= result.session.year %>
+                    </span></span>
+            </p>
+        </div>
+        <h1 class="details-title">THE FOLLOWING ARE THE DETAILS OF YOUR RESULT.</h1>
+        <table>
+
+            <tr>
+                <th>SUBJECTS</th>
+                <th>FIRST TEST</th>
+                <th>SECOND TEST</th>
+                <th>GRADE</th>
+                <th>EXAM</th>
+                <th>RESULT</th>
+            </tr>
+            <% result.items.forEach(function(item){ %>
+                <tr>
+
+
+                    <td>
+                        <%=item.subject.name %>
+                    </td>
+                    <td>
+                        <%=item.firstTest %>
+                    </td>
+                    <td>
+                        <%=item.secondTest %>
+                    </td>
+                    <td>
+                        <%=item.grade %>
+                    </td>
+                    <td>
+                        <%=item.exam %>
+                    </td>
+                    <td>Excellent</td>
+                </tr>
+                <% }); %>
+
+        </table>
+        <footer>
+            <div class="footer-row">
+                <div class="footer-score">Total Score: <span class="span-content">988</span></div>
+                <div class="footer-average">Average: <span class="span-content">71.3</span></div>
+                <div class="footer-position">Position: <span class="span-content">2</span></div>
+                <div class="footer-out-of">Out of: <span class="span-content">45</span></div>
+            </div>
+            <div class="footer-row">
+                <div class="footer-comment">Comment: <span class="span-content">A very excellent result</span></div>
+            </div>
+            <div class="footer-row">
+                <div class="footer-resumption">Resumption Date: <span class="span-content">Jan. 2nd, 2022</span></div>
+                <div class="footer-principal">Principal: <span class="span-content">你好</span></div>
+            </div>
+        </footer>
+    </div>
+    <script src="/template.js"></script>
+</body>
+
+</html>
