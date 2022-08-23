@@ -14,14 +14,16 @@ const { port, mongo, secretKey, host } = require("./config");
 const db = mongoose.connection;
 const app = express();
 app.set("port", port);
-app.use(
-  cors({
-    // origin: ["http://localhost:5000"],
-    origin: true,
-    credentials: true,
-    // exposedHeaders: ["set-cookie"],
-  })
-);
+// app.use(
+//   cors({
+//     // origin: ["http://localhost:5000"],
+//     origin: true,
+//     credentials: true,
+//     // exposedHeaders: ["set-cookie"],
+//   })
+// );
+
+app.use(cors())
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
