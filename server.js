@@ -9,8 +9,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const mongoose = require("./services/mongoose");
 const MongoStore = require("connect-mongo");
-const { port, mongo, secretKey, host } = require("./config");
-
+const { port, mongo, secretKey } = require("./config");
 const db = mongoose.connection;
 const app = express();
 // app.use(cors())

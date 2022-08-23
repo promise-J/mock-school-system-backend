@@ -31,7 +31,7 @@ const config = {
     emailAuthUser: requireProcessEnv("AUTH_USER"),
     emailAuthPass: requireProcessEnv("AUTH_PASS"),
     emailSender: requireProcessEnv("EMAIL_SENDER"),
-    host: requireProcessEnv("HOST"),
+    // host: requireProcessEnv("HOST"),
   },
   development: {},
   production: {
