@@ -17,7 +17,7 @@ app.set("trust proxy", 1);
 app.set("port", port);
 app.use(
   cors({
-    origin: ["http://localhost:5000", "https://netlify.resonance.app"],
+    origin: ["http://localhost:5000", "https://resonance.netlify.app"],
     // origin: true,
     credentials: true,
     sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
