@@ -76,7 +76,7 @@ const userCtrl = {
 
       const loginID =
         role === Role.STUDENT ? await genRegNo(classId) : req.body.loginID;
-        console.log({classFromBody: req.body, classFromAuth: req.user}, ' From the userCtrl')
+        // console.log({classFromBody: req.body, classFromAuth: req.user}, ' From the userCtrl')
 
       const user = await new User({
         role,
