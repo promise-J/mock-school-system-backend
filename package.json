@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A system that serves the result of the students",
   "main": "server.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "setup": "node setup.js",
     "start": "npm run setup && node server.js",

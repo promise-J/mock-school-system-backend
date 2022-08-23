@@ -75,6 +75,9 @@ app.use("/subject", SubjectRoute);
 app.use("/scratch", ScratchRoute);
 app.use("/message", MessageRoute);
 
+app.use('/', (req, res)=>{
+  res.send('Api is running')
+})
 // app.use(function (error, req, res, next) {
 //   if (error instanceof SyntaxError) {
 //     //Handle SyntaxError here.
