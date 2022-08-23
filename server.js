@@ -34,8 +34,8 @@ app.use(cookieParser());
 app.use(
   session({
     secret: secretKey,
-    resave: false,
-    saveUninitialized: true,
+    resave: true,
+    saveUninitialized: false,
 
     store: MongoStore.create({
       mongoUrl: mongo.uri,
