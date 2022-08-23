@@ -31,7 +31,6 @@ const config = {
     emailAuthUser: requireProcessEnv("AUTH_USER"),
     emailAuthPass: requireProcessEnv("AUTH_PASS"),
     emailSender: requireProcessEnv("EMAIL_SENDER"),
-    // host: requireProcessEnv("HOST"),
   },
   development: {},
   production: {
@@ -40,8 +39,8 @@ const config = {
       options: {
         useUnifiedTopology: true,
         useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
+        // useCreateIndex: true,
+        // useFindAndModify: false,
       },
     },
   },

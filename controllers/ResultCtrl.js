@@ -170,7 +170,6 @@ const resultCtrl = {
   allResult: async (req, res) => {
     /**
      * tHIS IS SAMPLE FILTER for result
-     * http://localhost:5000/result?page=&year=2021&term=third&name=dapo
      */
     try {
       // let allResult;
