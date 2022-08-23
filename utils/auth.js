@@ -16,7 +16,8 @@ module.exports.jwtAuth = async(req, res, next)=>{
 const auth = async (req, res, next) => {
   try {
     if (!req.session.userId) {
-      return res.status(400).json({ msg: "Invalid Authorization" });
+      console.log('not session found')
+      return res.status(400).json({ msg: "Invalid Authorization/no session" });
     }
     req.user = await User.findById(req.session.userId);
     next();

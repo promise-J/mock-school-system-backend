@@ -13,12 +13,15 @@ const { port, mongo, secretKey } = require("./config");
 const db = mongoose.connection;
 const app = express();
 // app.use(cors())
+app.set("trust proxy", 1);
 app.set("port", port);
 app.use(
   cors({
-    // origin: ["http://localhost:5000"],
-    origin: true,
+    origin: ["http://localhost:5000", "https://netlify.resonance.app"],
+    // origin: true,
     credentials: true,
+    sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+    secure: process.env.NODE_ENV === "production",
     exposedHeaders: ["set-cookie"],
   })
 );

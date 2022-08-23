@@ -36,7 +36,7 @@ const resultCtrl = {
 
         if (isSessionExpired) {
           await req.session.destroy();
-          return res.status(400).json({ msg: "Invalid Authorization" });
+          return res.status(400).json({ msg: "Invalid Authorization/expired session" });
         }
       } else if (user.role === Role.TEACHER) {
         const classIdOfResult = result.student.class;
