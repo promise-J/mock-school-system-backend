@@ -17,12 +17,12 @@ app.set("trust proxy", 1);
 app.set("port", port);
 app.use(
   cors({
-    origin: ["http://localhost:5000", "https://resonance.netlify.app"],
+    origin: ["http://localhost:3000", "https://resonance.netlify.app"],
     // origin: true,
     credentials: true,
     sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
     secure: process.env.NODE_ENV === "production",
-    exposedHeaders: ["set-cookie"],
+    // exposedHeaders: ["set-cookie"],
   })
 );
 
