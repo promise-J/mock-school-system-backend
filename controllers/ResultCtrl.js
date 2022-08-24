@@ -17,8 +17,10 @@ const { Class: UserClass } = require("../models/Class.model");
 const resultCtrl = {
   getResult: async (req, res) => {
     const user = req.user;
-    const scratchCard = req.session.card;
-    const accessTime = req.session.accessTime;
+    // const scratchCard = req.session.card;
+    // const accessTime = req.session.accessTime;
+    const scratchCard = req.card;
+    const accessTime = req.accessTime;
 
     try {
       const result = await Result.findById(req.params.resultId).populate(
@@ -35,8 +37,10 @@ const resultCtrl = {
           config.app.maxCardAcessTime;
 
         if (isSessionExpired) {
-          await req.session.destroy();
-          return res.status(400).json({ msg: "Invalid Authorization/expired session" });
+          req.card = null
+          req.accessTime = null
+          req.userId = null
+          return res.status(400).json({ msg: "Invalid Authorization" });
         }
       } else if (user.role === Role.TEACHER) {
         const classIdOfResult = result.student.class;
@@ -106,10 +110,10 @@ const resultCtrl = {
       scratchCard.result = result.id;
       await scratchCard.save();
 
-      req.session.userId = student.id;
-      req.session.accessTime = new Date();
-      req.session.card = scratchCard;
-      await req.session.save();
+      req.userId = student.id;
+      req.accessTime = new Date();
+      req.card = scratchCard;
+      // await req.session.save();
 
       return res.status(200).json({ user: student, resultId: result.id });
     } catch (error) {
@@ -170,6 +174,7 @@ const resultCtrl = {
   allResult: async (req, res) => {
     /**
      * tHIS IS SAMPLE FILTER for result
+     * http://localhost:5000/result?page=&year=2021&term=third&name=dapo
      */
     try {
       // let allResult;
