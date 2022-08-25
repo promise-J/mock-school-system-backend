@@ -19,7 +19,6 @@ const auth = async (req, res, next) => {
     console.log('no token found')
     return res.status(400).json("Authorization Failed");
   }
-  console.log(token, 'the token dey o')
   try {
     const user = jwt.verify(token, process.env.ACCESS_TOKEN);
     req.user = user
