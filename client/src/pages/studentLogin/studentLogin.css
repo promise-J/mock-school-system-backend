@@ -1,0 +1,98 @@
+.studentLogin{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.divide{
+    height: 70px;
+    background: transparent;
+}
+
+.studentLogin .studentLoginContainer{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.studentLoginContainer form{
+    /* height: 50%; */
+    height: fit-content;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid rgb(206, 197, 197);
+    box-shadow: 2px 2px 6px 1px rgb(184, 180, 180), -2px -2px 6px 2px white;
+    position: relative
+}
+.studentLoginContainer form button{
+    background: rgb(65, 65, 247);
+    border: blue 1px solid;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 18px;
+    transition: all ease-in-out 0.1s;
+}
+.studentLoginContainer form button:hover{
+    background: blue;
+    color: white;
+}
+
+.studentLoginInputDiv{
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgb(187, 180, 180);
+}
+.studentLoginContainer form h1{
+    color: red;
+    margin-top: 20px;
+}
+
+.studentLoginSearchIcon{
+    /* color: white !important; */
+    font-size: 30px !important;
+    margin-left: 12px;
+}
+.studentLoginContainer form p{
+    color: red;
+    margin: 8px 0 0;
+    font-weight: 500;
+    font-size: 17px;
+}
+.studentLoginContainer form h3{
+    color: blue;
+    margin: 8px 0 10px;
+}
+
+
+.studentLoginContainer form input, .studentLoginContainer form select:focus{
+    border: none;
+    outline: none;
+}
+.studentLoginContainer form input, .studentLoginContainer form select{
+    padding: 0.8rem 1rem;
+    font-size: 16px;
+    font-family: cursive;
+    border: none;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.studentLoginLogo{
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    top: -80px;
+    left: 40%;
+}

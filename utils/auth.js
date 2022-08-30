@@ -16,10 +16,10 @@ const { User } = require("../models/User.model");
 const auth = async (req, res, next) => {
   const token = req.header("Authorization");
   if (!token){
-    console.log('no token found')
     return res.status(400).json("Authorization Failed");
   }
   try {
+    console.log(token, 'the token')
     const user = jwt.verify(token, process.env.ACCESS_TOKEN);
     req.user = user
     next();

@@ -1,0 +1,25 @@
+.news-body .news-card{
+    background-color: rgb(240, 239, 239);
+    margin: 10px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 70%; */
+}
+
+.news-card-inner{
+    /* background-color: green; */
+    height: 80%;
+    width: 80%;
+    padding: 30px;
+}
+.news-card-inner h2{
+    margin: 30px;
+}
+
+.news-card img{
+    height: 50%;
+    width: 80%;
+    margin: 10px 43px;
+}

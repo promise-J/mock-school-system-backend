@@ -1,0 +1,186 @@
+.sidebar{
+    /* flex: 0.24; */
+    width: 22%;
+    position: sticky;
+    top: 55px;
+    height: calc(100vh - 55px);
+    border-right: 1px solid rgb(221, 218, 218);
+    background: rgb(236, 236, 241);
+}
+
+.sidebarWrapper{
+    /* background: red; */
+    height: 100%;
+    padding: 20px;
+    width: 90%;
+}
+
+.sidebar .profile{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    /* margin-right: auto; */
+    background: rgb(174, 168, 224);
+    border: rgb(196, 189, 189) solid 1px;
+    cursor: pointer;
+}
+
+.sidebar .sidebarTitle{
+    font-size: 18px;
+    font-weight: 200;
+    color: gray;
+}
+
+.sidebar .sidebarList{
+    list-style: none;
+    padding-left: 10px;
+}
+
+.sidebar .sidebarListItem{
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    padding: 3px 10px;
+    font-size: 13px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.sidebar .sidebarListItem:hover, .sidebar .sidebarListItem.active{
+    background: rgb(220, 220, 247);
+}
+
+.sidebar .sidebarListItemIcon{
+    margin-right: 10px;
+}
+
+.userShowTop{
+    display: flex;
+    align-items: center;
+}
+.userShowImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.userShowTopTitle{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.userShowUsername{
+    font-weight: 600;
+}
+
+.usrshowTitle{
+    font-weight: 300;
+}
+.userShowBottom{
+    margin-top: 20px;
+}
+.userShowTitle{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(185, 176, 176);
+}
+.userShowInfo{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    color: #444;
+}
+
+.userShowIcon{
+    font-size: 16px !important;
+}
+
+.userShowInfoTitle{
+    margin-left: 10px;
+}
+
+.userUpdateForm{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.userUpdateTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+.userUpdateItem{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.userUpdateItem > label{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.userUpdateInput{
+    border: none;
+    border-bottom: 1px solid gray;
+    width: 250px;
+    height: 30px;
+    outline: none;
+}
+
+.userUpdateImg{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.userUpdateRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.userUpdateUpload{
+    display: flex;
+    align-items: center;
+}
+
+.userUpdateIcon{
+    cursor: pointer;
+}
+
+.userUpdateButton{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    background: darkblue;
+    color: white;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

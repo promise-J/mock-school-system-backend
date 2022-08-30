@@ -1,0 +1,89 @@
+/*CREATE CLASS STARTS*/
+.createClassForm{
+    /* background: blue; */
+    /* border: 1px solid rgb(233, 232, 232); */
+    width: 80%;
+    margin: 20px auto;
+    /* height: 70%; */
+    height: fit-content;
+    padding: 20px;
+}
+.createClassForm h2{
+    color: rgb(99, 97, 97);
+    font-weight: lighter;
+}
+.createClassDiv{
+    /* background: red; */
+    height: 32px;
+    margin: 20px 0 0 0;
+}
+.createClassDiv input, .createClassDiv select{
+    height: 80%;
+    width: 80%;
+    padding: 0.1rem 1rem;
+    font-family: cursive;
+    font-size: 13px;
+    /* background-color: blue; */
+}
+
+.createClassDiv input:disabled{
+    background-color: rgb(252, 249, 249);
+}
+
+
+.createClassDiv input:focus, .createClassDiv select:focus{
+    outline: none;
+}
+
+.createClassForm p{
+    margin-top: 10px;
+}
+
+.createClassSubject{
+    /* background: blue; */
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    width: 80%;
+}
+.createClassSubject span{
+    margin: 5px;
+}
+
+.createClassSubject input{
+    margin-right: 10px;
+    height: 12px;
+    width: 12px;
+}
+.createClassForm button{
+    /* color: rgb(255, 255, 255); */
+    background: transparent;
+    color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: 0.2s all ease-in-out;
+    margin-top: 15px;
+    border: 1px solid gray;
+}
+.createClassForm button:hover{
+    background: rgb(241, 240, 240);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+.clubs{
+    height: fit-content;
+    /* padding: 0px 30px 30px 30px; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* background-color: red; */
+}
+
+.clubs h4{
+    text-align: center;
+    font-size: 25px;
+    color: rgb(172, 109, 231);
+    margin-bottom: 15px;
+}
+
+.clubs .m-h{
+    height: 3px;
+    background-color: blueviolet;
+    width: 7rem;
+    margin: auto;
+}
+
+.clubs .clubs-images{
+    /* background: blue; */
+    height: fit-content;
+    margin: 20px auto;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
+
+.clubs .club-image{
+    height: 400px;
+    width: 230px;
+    border: 1px solid rgb(178, 105, 247);
+    margin: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: -3px -2px 2px 0px rgba(0,0,0,0.6), 2px 3px 6px 0px rgba(0,0,0,0.6),
+    3px 3px 4px 3px rgb(172, 109, 231), 4px 2px 4px 0px rgb(172, 109, 231);
+    transition: all ease-in-out 1s;
+}
+.clubs .club-text{
+    /* background-color: blue; */
+    width: 77%;
+    margin: 5px auto;
+    /* padding: 0 10px; */
+    font-size: 20px;
+    color: rgb(172, 109, 231);
+    line-height: 2;
+    letter-spacing: 3px;
+}
+
+.clubs .club-text .first-text{
+    font-size: 32px;
+    color: black;
+}
+
+.clubs .club-image:nth-child(1){
+    background-image: url('../../images/school1.jpg');
+}
+.clubs .club-image:nth-child(2){
+    background-image: url('../../images/school2.jpg');
+}
+.clubs .club-image:nth-child(3){
+    background-image: url('../../images/school4.jpg');
+}
+.clubs .club-image:nth-child(4){
+    background-image: url('../../images/school3.jpg');
+}
+
+
+
+
+@media screen and (min-width: 750px){
+    .clubs .club-image:hover{
+        transform: scale(0.8) rotateY(45deg);
+    }
+    
+}

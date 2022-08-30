@@ -13,19 +13,18 @@ const { port, mongo, secretKey } = require("./config");
 const db = mongoose.connection;
 const app = express();
 // app.use(cors())
-app.set("trust proxy", 1);
-app.set("port", port);
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://resonance.netlify.app"],
+    origin: "*",
     // origin: true,
     credentials: true,
-    sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-    secure: process.env.NODE_ENV === "production",
     // exposedHeaders: ["set-cookie"],
   })
 );
+app.set("trust proxy", 1);
+app.set("port", port);
 
+// app.use(cors())
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -36,13 +35,14 @@ app.use(
     secret: secretKey,
     resave: true,
     saveUninitialized: false,
-
     store: MongoStore.create({
       mongoUrl: mongo.uri,
       collectionName: "usersessions",
     }),
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secret: process.env.NODE_ENV === "production",
       // secure: true,
     },
   })
@@ -79,9 +79,9 @@ app.use("/subject", SubjectRoute);
 app.use("/scratch", ScratchRoute);
 app.use("/message", MessageRoute);
 
-app.use('/', (req, res)=>{
-  res.send('Api is running')
-})
+app.use("/", (req, res) => {
+  res.send("Api is running");
+});
 // app.use(function (error, req, res, next) {
 //   if (error instanceof SyntaxError) {
 //     //Handle SyntaxError here.
@@ -98,6 +98,11 @@ app.use('/', (req, res)=>{
 //     console.log(str)
 //   }
 // })
+
+// var http = require("http");
+// setInterval(function() {
+//     http.get("http://<your app name>.herokuapp.com");
+// }, 300000); // every 5 minutes (300000)
 
 app.post("/scratch", async (req, res) => {
   let arr = [];

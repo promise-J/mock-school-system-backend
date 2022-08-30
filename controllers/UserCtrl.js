@@ -218,11 +218,15 @@ const userCtrl = {
       const isMatch = user.verifyPassword(password);
       if (!isMatch) return res.status(400).json("Password is incorrect");
 
+      /**/
       // req.session.userId = user.id;
       // req.session.accessTime = new Date();
       // await req.session.save();
-      req.userId = user.id
-      req.accessTime = new Date()
+      /**/
+
+      // req.session.userId = user.id;
+      // req.session.accessTime = new Date();
+      // await req.session.save();
       const token = jwt.sign(user._doc, process.env.ACCESS_TOKEN)
 
       return res.status(200).json({ user: user, msg: "Login successful", token });

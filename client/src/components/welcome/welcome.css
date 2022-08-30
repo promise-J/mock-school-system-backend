@@ -1,0 +1,37 @@
+.welcome-page{
+    height: fit-content;
+    /* padding: 0px 30px; */
+    display: flex;
+    flex-direction: column;
+    /* background-color: blue; */
+}
+
+.welcome-page .welcome-image{
+    height: 50vh;
+    width: 100%;
+    background-image: url('../../images/principal.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 0 40px 0;
+}
+
+.welcome-page .club-text{
+    /* background-color: blue; */
+    width: 77%;
+    margin: 50px auto;
+    /* padding: 0 10px; */
+    font-size: 20px;
+    color: rgb(163, 86, 235);
+    line-height: 2;
+    letter-spacing: 3px;
+}
+
+.welcome-page .club-text .first-text{
+    font-size: 32px;
+    color: black;
+}
+.welcome-page .club-text small{
+    color: black;
+}
+

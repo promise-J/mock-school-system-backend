@@ -1,0 +1,25 @@
+
+
+.filterForm{
+    width: 70%;
+    margin: 20px 0 10px 20px;
+    padding: 5px;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filterForm input, .filterForm select, .filterForm button{
+    max-width: 90%;
+    margin-bottom: 6px;
+    margin: 5px;
+    height: 30px;
+    /* padding: 15px; */
+}
+
+.filterForm button{
+    background-color: rgb(199, 199, 250);
+    padding: 5px 10px;
+    border: black solid 1px;
+}
