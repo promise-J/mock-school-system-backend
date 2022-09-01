@@ -8,7 +8,7 @@ import axios from "axios";
 import { dispatchLogout } from "./redux/actions/authAction";
 
 
-axios.defaults.baseURL = process.env
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL
 axios.defaults.withCredentials = true;
 
 axios.interceptors.response.use(
