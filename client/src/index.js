@@ -6,16 +6,10 @@ import App from "./App";
 import DataProvider, { store } from "./redux/store";
 import axios from "axios";
 import { dispatchLogout } from "./redux/actions/authAction";
-import Cookies from "universal-cookie";
 
-const cookies = new Cookies()
 
-const token = cookies.get('loginID')
-axios.defaults.baseURL = "http://localhost:5000/";
-// axios.defaults.baseURL = "https://9e6e-129-205-124-145.eu.ngrok.io/";
-if(token){
-  axios.defaults.withCredentials = true;
-}
+axios.defaults.baseURL = process.env
+axios.defaults.withCredentials = true;
 
 axios.interceptors.response.use(
   function (response) {

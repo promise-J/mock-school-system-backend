@@ -10,13 +10,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import { isPrincipal } from "../../utils/roleChecks";
-import { axiosRequest } from "src/utils/axiosRequest";
-// import Cookie from 'universal-cookie';
 import axios from "axios";
 
 // eslint-disable-next-line
 function Dashboard() {
-  // const cookies = new Cookie()
   const { user, role } = useSelector((state) => state.auth);
 
   const [stats, setStats] = useState(null);
