@@ -36,8 +36,16 @@ const corsOptions = {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "client/build")));
 app.use(cors('*'))
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
+}
+
 
 app.use(cookieParser());
 app.use(
@@ -59,13 +67,6 @@ app.use(
   );
   
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "client/build")));
-
-//   app.get("*", function (req, res) {
-//     res.sendFile(path.join(__dirname, "client/build", "index.html"));
-//   });
-// }
 
 // app.use(express.static(path.join(__dirname, "public")));
 
@@ -100,32 +101,6 @@ app.use("/scratch", ScratchRoute);
 app.use("/message", MessageRoute);
 
 
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"));
-  });
-
-
-
-
-// app.use("/", (req, res) => {
-//   res.send("Api is running");
-// });
-// app.use(function (error, req, res, next) {
-//   if (error instanceof SyntaxError) {
-//     //Handle SyntaxError here.
-//     return res.status(500).send({ data: "Invalid data" });
-//   } else {
-//     next();
-//   }
-// });
-
-// cron.schedule('* * * * *', () => {
-//   for (let i = 0; i < 20; i++) {
-//     let str = uuidv4().split('-')
-//     str = 'SMACADY' + str[str.length - 1]
-//     console.log(str)
-//   }
-// })
 
 // var http = require("http");
 // setInterval(function() {
