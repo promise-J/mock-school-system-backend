@@ -1,4 +1,5 @@
 import { DeleteOutlined, EditOutlined } from "@material-ui/icons";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -21,14 +22,16 @@ function ViewClass() {
     const getClasses = async () => {
       try {
         setLoading(true);
-        const { data } = await axiosRequest.get("/class");
+        const { data } = await axios.get("/class");
 
         const { totalPages, classes } = data;
         setAllClasses(classes);
         setNoOfPages(totalPages);
         setLoading(false);
         // console.log(res.data)
-      } catch (error) {}
+      } catch (error) {
+        console.log(error, 'from the class get')
+      }
     };
     getClasses();
   }, []);

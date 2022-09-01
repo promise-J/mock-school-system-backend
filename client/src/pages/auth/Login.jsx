@@ -50,14 +50,12 @@ function Login() {
     e.preventDefault()
     try {
       const res = await axios.post('users/login', {loginID: 'admin', password: 'superadmin'})  
-      console.log(res.data) 
       // cookies.set('loginID', res.data.token)
       dispatch(dispatchLogin());
       dispatch(dispatchUser(res.data.user));
       notify("success", "Login Successful");
       history.push("/dashboard");
     } catch (error) {
-      console.log(error.response.data, 'from admin login')
       notify("error", "Login Failed");
     }
   }
@@ -72,7 +70,6 @@ function Login() {
       notify('success', 'Login Successful')
       history.push("/dashboard");
     } catch (error) {
-      console.log(error)
       notify('error', 'Login Failed')
     }
   };

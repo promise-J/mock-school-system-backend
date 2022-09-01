@@ -22,9 +22,8 @@ const corsOptions = {
   credentials: true
 }
 // app.use(cors(corsOptions))
-app.use(cors('*'))
 // app.use(
-//   cors({
+  //   cors({
 //     origin: "*",
 //     // origin: true,
 //     credentials: true,
@@ -37,6 +36,8 @@ app.use(cors('*'))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "client/build")));
+app.use(cors('*'))
 
 app.use(cookieParser());
 app.use(
@@ -55,7 +56,8 @@ app.use(
       // secure: true,
     },
   })
-);
+  );
+  
 
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static(path.join(__dirname, "client/build")));
@@ -64,6 +66,7 @@ app.use(
 //     res.sendFile(path.join(__dirname, "client/build", "index.html"));
 //   });
 // }
+
 // app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
@@ -95,6 +98,11 @@ app.use("/session", SessionRoute);
 app.use("/subject", SubjectRoute);
 app.use("/scratch", ScratchRoute);
 app.use("/message", MessageRoute);
+
+
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
 
 
 

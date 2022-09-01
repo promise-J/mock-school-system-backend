@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import Loading from "../loading/Loading";
 import {useNotify} from '../../customHooks'
 import { axiosRequest } from "src/utils/axiosRequest";
+import axios from "axios";
 // import Alert from '../alert/Alert';
 /* eslint-disable */
 function CreateClass() {
@@ -29,7 +30,7 @@ function CreateClass() {
     const getAllSubjects = async () => {
       try {
         setLoading(true);
-        const res = await axiosRequest.get("/subject");
+        const res = await axios.get("/subject");
         setAllSubjects(res.data.subjects);
       } catch (error) {
         console.log(error);

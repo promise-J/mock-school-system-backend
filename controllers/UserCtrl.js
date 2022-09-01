@@ -240,8 +240,8 @@ const userCtrl = {
   },
   logout: async (req, res) => {
     try {
-      // await req.session.destroy();
-      req.user = null
+      await req.session.destroy();
+      // req.user = null
       return res.json({ msg: "Logged out" });
     } catch (error) {
       return res.status(500).json({ msg: error.message });

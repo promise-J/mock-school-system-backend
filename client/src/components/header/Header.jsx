@@ -15,7 +15,6 @@ function Header() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const PF = REACT_APP_CLIENT_URL;
 
   const handleMenu = () => {
     setToggle((state) => !state);

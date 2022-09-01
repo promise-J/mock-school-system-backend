@@ -11,29 +11,25 @@ import { Link } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import { isPrincipal } from "../../utils/roleChecks";
 import { axiosRequest } from "src/utils/axiosRequest";
-import Cookie from 'universal-cookie';
+// import Cookie from 'universal-cookie';
+import axios from "axios";
 
 // eslint-disable-next-line
 function Dashboard() {
-  const cookies = new Cookie()
+  // const cookies = new Cookie()
   const { user, role } = useSelector((state) => state.auth);
-  const TOKEN = cookies.get('loginID')
 
   const [stats, setStats] = useState(null);
   useEffect(() => {
     const getClasses = async () => {
       try {
-        const res = await axiosRequest.get("/stats", {headers: {Authorization: TOKEN}});
-        console.log(TOKEN, 'dashboard')
+        const res = await axios.get("/stats");
         setStats(res.data.stats);
       } catch (error) {
-        console.log(error, 'from the dashboard')
       }
     };
-    setTimeout(()=>{
-      TOKEN && getClasses();
-    },2000)
-  }, [TOKEN]);
+    getClasses();
+  }, []);
 
 
   return (

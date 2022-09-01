@@ -9,8 +9,7 @@
   "scripts": {
     "setup": "node setup.js",
     "start": "npm run setup && node server.js",
-    "dev": "npm run setup && nodemon server.js",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "dev": "npm run setup && nodemon server.js"
   },
   "author": "Promise and daniel",
   "license": "ISC",
