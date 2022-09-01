@@ -27,7 +27,7 @@ function Dashboard() {
         console.log(TOKEN, 'dashboard')
         setStats(res.data.stats);
       } catch (error) {
-        console.log(error.response, 'from the dashboard')
+        console.log(error, 'from the dashboard')
       }
     };
     setTimeout(()=>{

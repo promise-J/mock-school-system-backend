@@ -14,19 +14,15 @@ const db = mongoose.connection;
 const app = express();
 
 
-const whiteList = ['http://localhost:3000', 'http://localhost:5000']
+app.set("port", port);
+// const whiteList = ['http://localhost:3000', 'http://localhost:5000']
 const corsOptions = {
-  origin: function(origin, callback){
-    console.log("**origin of requst**", origin)
-    if(whiteList.indexOf(origin) !== -1 || !origin){
-      console.log('origin acceptedd')
-      callback(null, true)
-    }else{
-      callback(new Error('Orgin not allowed by cors'))
-    }
-  }
+  // origin: ['http://localhost:3000', 'http://localhost:5000']
+  origin: "*",
+  credentials: true
 }
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
+app.use(cors('*'))
 // app.use(
 //   cors({
 //     origin: "*",
@@ -36,7 +32,6 @@ app.use(cors(corsOptions))
 //   })
 // );
 // app.set("trust proxy", 1);
-app.set("port", port);
 
 // app.use(cors())
 
@@ -61,6 +56,14 @@ app.use(
     },
   })
 );
+
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "client/build")));
+
+//   app.get("*", function (req, res) {
+//     res.sendFile(path.join(__dirname, "client/build", "index.html"));
+//   });
+// }
 // app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
@@ -94,17 +97,11 @@ app.use("/scratch", ScratchRoute);
 app.use("/message", MessageRoute);
 
 
-if(process.env.NODE_ENV==='production'){
-  app.use(express.static(path.join(__dirname, 'client/build')))
 
-  app.get("*", function(req, res){
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  })
-}
 
-app.use("/", (req, res) => {
-  res.send("Api is running");
-});
+// app.use("/", (req, res) => {
+//   res.send("Api is running");
+// });
 // app.use(function (error, req, res, next) {
 //   if (error instanceof SyntaxError) {
 //     //Handle SyntaxError here.
