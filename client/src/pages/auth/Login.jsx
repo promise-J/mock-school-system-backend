@@ -9,8 +9,6 @@ import { dispatchLogin, dispatchUser } from "../../redux/actions/authAction";
 import styled from "styled-components";
 import { Check, Clear } from "@material-ui/icons";
 import {useNotify} from '../../customHooks'
-// import Cookie from 'universal-cookie'
-// import { axiosRequest } from "src/utils/axiosRequest";
 import axios from "axios";
 
 const InputSpan = styled.span`
@@ -29,7 +27,6 @@ const InputSpan = styled.span`
 // const {REACT_APP_CLIENT_URL} = process.env
 
 function Login() {
-  // const cookies = new Cookie()
   const history = useHistory()
   const dispatch = useDispatch();
   const notify = useNotify()
@@ -49,8 +46,7 @@ function Login() {
   const adminLogin = async(e)=>{
     e.preventDefault()
     try {
-      const res = await axios.post('users/login', {loginID: 'admin', password: 'superadmin'})  
-      // cookies.set('loginID', res.data.token)
+      const res = await axios.post('/users/login', {loginID: 'admin', password: 'superadmin'})  
       dispatch(dispatchLogin());
       dispatch(dispatchUser(res.data.user));
       notify("success", "Login Successful");
@@ -64,7 +60,6 @@ function Login() {
     try {
       e.preventDefault();
       const res = await axios.post("/users/login", { loginID, password });
-      // cookies.set('loginID', res.data.token)
       dispatch(dispatchLogin());
       dispatch(dispatchUser(res.data.user));
       notify('success', 'Login Successful')

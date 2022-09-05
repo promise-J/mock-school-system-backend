@@ -1,4 +1,4 @@
-import { axiosRequest } from "src/utils/axiosRequest";
+import axios from "axios";
 import ACTIONS from "./index";
 
 export const dispatchLogin = () => {
@@ -20,7 +20,7 @@ export const dispatchLogout = () => {
 
 export const fetchUser = async () => {
   try {
-    const res = await axiosRequest.get("/users/info");
+    const res = await axios.get("/users/info");
     return res.data.user;
   } catch (error) {
     console.log(error, 'from the info')

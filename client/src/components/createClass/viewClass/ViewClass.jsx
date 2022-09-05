@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNotify } from "src/customHooks";
-import { axiosRequest } from "src/utils/axiosRequest";
 import Loading from "../../loading/Loading";
 import Pagination from "../../pagination/Pagination";
 
@@ -50,7 +49,7 @@ function ViewClass() {
     try {
       setAllClasses(allClasses.filter((c) => c._id !== id));
       notify("success", "Deleted Successfully");
-      await axiosRequest.delete(`/class/${id}`);
+      await axios.delete(`/class/${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +61,7 @@ function ViewClass() {
     </h1>
   ) : (
     <div className="dashboard">
-      {allClasses.length > 0 ? (
+      {allClasses?.length > 0 ? (
         <>
           <h1 className="dashboardBodyHeading">All Student Class</h1>
 
@@ -118,12 +117,12 @@ function ViewClass() {
           No Class Found
         </h1>
       )}
-      {user.role === "superuser" && (
+      {user?.role === "superuser" && (
         <Link className="viewClassLink" to="/createClass">
           Create Class
         </Link>
       )}
-      {allClasses.length > 0 && user.role === "superuser" && (
+      {allClasses?.length > 0 && user.role === "superuser" && (
         <Pagination
           noOfPages={noOfPages}
           prevPage={prevPage}

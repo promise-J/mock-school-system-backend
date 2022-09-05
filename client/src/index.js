@@ -8,6 +8,7 @@ import axios from "axios";
 import { dispatchLogout } from "./redux/actions/authAction";
 
 
+// axios.defaults.baseURL = 'http://localhost:5000/'
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL
 axios.defaults.withCredentials = true;
 
@@ -18,23 +19,19 @@ axios.interceptors.response.use(
   function (error) {
     const errMsg = error.response?.data?.msg;
     const errStatus = error.response?.status;
-
     if (errMsg) {
       if (errStatus === 400 && errMsg && errMsg.includes("Authorization")) {
         store.dispatch(dispatchLogout());
       }
     }
-
     return Promise.reject(error);
   }
 );
 
+
 // axios.interceptors.request.use(
 //   function (config) {
-//     if(token){
-//       config.headers.Authorization = token
-//       console.log(token, 'there is token from the interceptor')
-//     }
+//     console.log(config, 'the axios request')
 //     return config
 //   },
 //   function(error){

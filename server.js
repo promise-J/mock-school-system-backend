@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
 const expImg = require("express-fileupload");
 const cron = require("node-cron");
 const session = require("express-session");
@@ -9,72 +8,8 @@ const { v4: uuidv4 } = require("uuid");
 
 const mongoose = require("./services/mongoose");
 const MongoStore = require("connect-mongo");
-const { port, mongo, secretKey } = require("./config");
-const db = mongoose.connection;
-const app = express();
+const { port, mongo, secretKey, Environment } = require("./config");
 
-
-app.set("port", port);
-// const whiteList = ['http://localhost:3000', 'http://localhost:5000']
-const corsOptions = {
-  // origin: ['http://localhost:3000', 'http://localhost:5000']
-  origin: "*",
-  credentials: true
-}
-// app.use(cors(corsOptions))
-// app.use(
-  //   cors({
-//     origin: "*",
-//     // origin: true,
-//     credentials: true,
-//     // exposedHeaders: ["set-cookie"],
-//   })
-// );
-// app.set("trust proxy", 1);
-
-// app.use(cors())
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors('*'))
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
-
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"));
-  });
-}
-
-
-app.use(cookieParser());
-app.use(
-  session({
-    secret: secretKey,
-    resave: true,
-    saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: mongo.uri,
-      collectionName: "usersessions",
-    }),
-    cookie: {
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      secret: process.env.NODE_ENV === "production",
-      // secure: true,
-    },
-  })
-  );
-  
-
-
-// app.use(express.static(path.join(__dirname, "public")));
-
-app.use(
-  expImg({
-    useTempFiles: true,
-  })
-);
 
 const {
   uploadImage,
@@ -90,6 +25,64 @@ const {
 } = require("./routes");
 const { Scratch } = require("./models/Scratch.model");
 
+const db = mongoose.connection;
+const app = express();
+
+app.set("port", port);
+app.set("trust proxy", 1);
+app.use(cors({origin: "*", credentials: true}))
+
+
+app.use(
+  session({
+    secret: secretKey,
+    resave: true,
+    saveUninitialized: false,
+
+    store: MongoStore.create({
+      mongoUrl: mongo.uri,
+      collectionName: "usersessions",
+    }),
+    cookie: {
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      // secure: true,
+    },
+  })
+);
+
+// app.use(
+//   session({
+//     name: 'schoolID',
+//     secret: secretKey,
+//     resave: true,
+//     saveUninitialized: false,
+//     store: MongoStore.create({
+//       mongoUrl: mongo.uri,
+//       collectionName: "usersessions"
+//     }),
+//     cookie: {
+//       maxAge: 7 * 24 * 60 * 60 * 1000,
+//       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+//       secret: process.env.NODE_ENV === "production",
+//       // secure: true,
+//     },
+//   })
+//   );
+  
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  
+  // if (true) {
+    
+    // app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  expImg({
+    useTempFiles: true,
+  })
+);
+
+
 app.use("/stats", StatsRoute);
 app.use("/users", UserRoute);
 app.use("/class", ClassRoute);
@@ -101,6 +94,13 @@ app.use("/scratch", ScratchRoute);
 app.use("/message", MessageRoute);
 
 
+if (Environment === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
+}
 
 // var http = require("http");
 // setInterval(function() {
@@ -121,10 +121,7 @@ app.post("/scratch", async (req, res) => {
     });
   }
   const cards = await Scratch.insertMany(arr);
-  // console.log(cards);
   return res.json(cards);
-  // const scratchObj = {user: null, usageCount: 0, card: }
-  // res.json('this is for the card')
 });
 // })
 // user, usageCount, card.

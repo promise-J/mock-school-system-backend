@@ -3,9 +3,8 @@ import './staffMessage.css'
 import Layout from '../../components/Layout/Layout'
 import { useSelector } from 'react-redux';
 import MessageFeed from './MessageFeed';
-// import axios from 'axios';
+import axios from 'axios';
 import { CircularProgress } from '@material-ui/core';
-import { axiosRequest } from 'src/utils/axiosRequest';
 
 const StaffMessage = () => {
     const parentRef = useRef(null)
@@ -28,7 +27,7 @@ const StaffMessage = () => {
        const getMessages = async() =>{
          try {
              setLoading(true)
-             const res = await axiosRequest.get('/message')
+             const res = await axios.get('/message')
              setMessages(res.data)
              setLoading(false)
          } catch (error) {
@@ -42,7 +41,7 @@ const StaffMessage = () => {
         e.preventDefault()
         if(!content) return
         try {
-            await axiosRequest.post('/message', {sender: user?.user.id, message: content})
+            await axios.post('/message', {sender: user?.user.id, message: content})
             setCb(!cb)
         } catch (error) {
             console.log(error)
@@ -65,7 +64,7 @@ const StaffMessage = () => {
                 loading ? <CircularProgress style={{margin: '40px 50px', fontSize: 50}} /> :
             <div ref={parentRef} className="staffMessageContainer">
             {
-                messages.map(m=>(
+                messages?.map(m=>(
                     <MessageFeed key={m._id} message={m} messages={messages} setMessages={setMessages} />
                 ))
             }

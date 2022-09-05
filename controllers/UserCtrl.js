@@ -217,14 +217,10 @@ const userCtrl = {
 
       const isMatch = user.verifyPassword(password);
       if (!isMatch) return res.status(400).json("Password is incorrect");
-
            req.session.userId = user.id;
            req.session.accessTime = new Date();
            await req.session.save();
            return res.status(200).json({ user: user, msg: "Login successful" });
-
-      // const token = jwt.sign(user._doc, process.env.ACCESS_TOKEN)
-      // return res.status(200).json({ user: user, msg: "Login successful", token });
 
     } catch (error) {
       console.log(error);
@@ -241,7 +237,6 @@ const userCtrl = {
   logout: async (req, res) => {
     try {
       await req.session.destroy();
-      // req.user = null
       return res.json({ msg: "Logged out" });
     } catch (error) {
       return res.status(500).json({ msg: error.message });

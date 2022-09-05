@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 import Pagination from "../pagination/Pagination";
 import { useSelector } from "react-redux";
 import { DeleteOutlined, EditOutlined } from "@material-ui/icons";
 import Loading from "../loading/Loading";
 import { isAdmin } from "../../utils/roleChecks";
 import {useNotify} from '../../customHooks'
-import { axiosRequest } from "src/utils/axiosRequest";
 
 function ViewStudent() {
   const notify = useNotify()
@@ -21,7 +20,7 @@ function ViewStudent() {
   useEffect(() => {
     const getStudents = async () => {
       setLoading(true);
-      const { data } = await axiosRequest.get(
+      const { data } = await axios.get(
         `/users/all/students?page=${pageNumber}`
       );
       const { students, totalPages } = data;
@@ -46,7 +45,7 @@ function ViewStudent() {
     setStudents(students.filter((s) => s.id !== id));
     notify('success', 'Delete Successful')
     try {
-      await axiosRequest.delete(`/users/${id}`);
+      await axios.delete(`/users/${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +62,7 @@ function ViewStudent() {
     <div className="dashboard">
       {isAdmin(role) ? (
         <>
-          {students.length > 0 ? (
+          {students?.length > 0 ? (
             <>
               <h1 className="dashboardBodyHeading">All Registered Students</h1>
               <table className="viewClassTable">
@@ -116,7 +115,7 @@ function ViewStudent() {
           <Link className="viewClassLink" to="/createUser">
             Register Student
           </Link>
-          {students.length > 0 && (
+          {students?.length > 0 && (
             <Pagination
               noOfPages={noOfPages}
               prevPage={prevPage}

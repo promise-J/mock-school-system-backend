@@ -1,13 +1,12 @@
 import { Close, MenuOpen } from "@material-ui/icons";
+import axios from "axios";
 // import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { axiosRequest } from "src/utils/axiosRequest";
 import { dispatchLogout } from "../../redux/actions/authAction";
 import "./header.css";
-const { REACT_APP_CLIENT_URL } = process.env;
 
 function Header() {
   const { isLogged } = useSelector((state) => state.auth);
@@ -23,7 +22,7 @@ function Header() {
   const handleMenuLogout = async () => {
     setToggle((state) => !state);
     try {
-      await axiosRequest.get("/users/logout");
+      await axios.get("/users/logout");
       // localStorage.removeItem("firstLogin");
       dispatch(dispatchLogout());
       history.push("/");
@@ -35,7 +34,7 @@ function Header() {
 
   const logout = async () => {
     try {
-      await axiosRequest.get("/users/logout");
+      await axios.get("/users/logout");
       localStorage.removeItem("firstLogin");
       dispatch(dispatchLogout());
       history.push("/");

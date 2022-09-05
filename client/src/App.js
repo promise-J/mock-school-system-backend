@@ -49,7 +49,6 @@ import ResetPassword from "./components/passwordReset/ResetPassword";
 import ViewScratchCard from "./pages/scratchCard/ViewScratchCard";
 import RequestCard from "./pages/scratchCard/RequestCard";
 import Notifications from "./components/notifications";
-// import { axiosRequest } from "./utils/axiosRequest";
 
 // import Loading from "./components/loading/Loading";
 

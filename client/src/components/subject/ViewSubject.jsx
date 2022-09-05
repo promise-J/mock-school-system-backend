@@ -1,9 +1,8 @@
 import { DeleteOutlined, EditOutlined } from "@material-ui/icons";
-// import axios from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { axiosRequest } from "src/utils/axiosRequest";
 import Loading from "../loading/Loading";
 import Pagination from "../pagination/Pagination";
 
@@ -19,7 +18,7 @@ function ViewSubject() {
   useEffect(() => {
     const getSubjects = async () => {
       setLoading(true);
-      const { data } = await axiosRequest.get(`/subject?page=${pageNumber}`);
+      const { data } = await axios.get(`/subject?page=${pageNumber}`);
       const { totalPages, subjects } = data;
       setSubjects(subjects);
       setNoOfPages(totalPages);
@@ -31,7 +30,7 @@ function ViewSubject() {
   const deleteItem = async (id) => {
     setSubjects(subjects.filter((s) => s.id !== id));
     try {
-      await axiosRequest.delete(`/subject/${id}`);
+      await axios.delete(`/subject/${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +54,7 @@ function ViewSubject() {
     );
   return (
     <div className="dashboard" style={{ padding: "0 40px" }}>
-      {subjects.length > 0 ? (
+      {subjects?.length > 0 ? (
         <>
           {" "}
           <h1
@@ -106,7 +105,7 @@ function ViewSubject() {
       <Link className="viewClassLink" to="/createSubject">
         Create Subject
       </Link>
-      {subjects.length > 0 && (
+      {subjects?.length > 0 && (
         <Pagination
           noOfPages={noOfPages}
           prevPage={prevPage}

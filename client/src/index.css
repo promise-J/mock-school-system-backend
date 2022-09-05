@@ -6,7 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
+  box-sizing: border-box;
 }
+
 
 .App {
   height: 100vh;

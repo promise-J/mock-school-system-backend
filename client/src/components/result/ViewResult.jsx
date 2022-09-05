@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { DeleteOutlined, EditOutlined } from "@material-ui/icons";
@@ -10,7 +10,6 @@ import { isAdmin } from "../../utils/roleChecks";
 import Pagination from "../pagination/index";
 import { useFilter } from "../../customHooks";
 import './viewResult.css'
-import { axiosRequest } from "src/utils/axiosRequest";
 // import Pagination from "src/components/pagination/";
 
 
@@ -57,7 +56,7 @@ function ViewResult() {
     if (isAdmin(role)) {
       const getSessions = async () => {
         setLoading(true);
-        const res = await axiosRequest.get('/session/all/session');
+        const res = await axios.get('/session/all/session');
         setSessions(res.data.sessions);
         setLoading(false);
       };
@@ -82,7 +81,7 @@ function ViewResult() {
     if (isAdmin(role)) {
       const getResults = async () => {
         setLoad(true);
-        const { data } = await axiosRequest.get(`/result`, { params: query });
+        const { data } = await axios.get(`/result`, { params: query });
         const { results, pagination, recentYear } = data;
         setCurrentSession(recentYear)
 
@@ -121,7 +120,7 @@ function ViewResult() {
   const deleteItem = async (id) => {
     try {
       setResults(results.filter((s) => s.id !== id));
-      await axiosRequest.delete(`/result/${id}`);
+      await axios.delete(`/result/${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -167,7 +166,7 @@ function ViewResult() {
         >
           <option value={DEFAULT_YEAR}>Default Session</option>
           {
-            sessions.map(session => (
+            sessions?.map(session => (
               <option key={session._id} value={session?.year}>{session?.year + "/" + Number(session?.year + 1)}</option>
             ))
           }
@@ -191,7 +190,7 @@ function ViewResult() {
         <span style={{fontSize: 12}}>Session: {currentSession}</span>
       </form>
           <h1 className="dashboardBodyHeading">All Results</h1>
-          {results.length > 0 ?
+          {results?.length > 0 ?
           <>
           <table className="viewClassTable">
             <thead>
@@ -206,7 +205,7 @@ function ViewResult() {
               </tr>
             </thead>
             <tbody>
-              {results.map((result, idx) => {
+              {results?.map((result, idx) => {
                 const zeroToOneIndex = idx + 1;
                 const serialNo = zeroToOneIndex + paginationInfo?.startIndex;
 

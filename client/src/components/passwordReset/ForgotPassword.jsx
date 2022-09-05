@@ -1,6 +1,6 @@
 // import axios from 'axios';
+import axios from 'axios';
 import React, { useState } from 'react';
-import { axiosRequest } from 'src/utils/axiosRequest';
 import './passwordReset.css'
 
 const ForgotPassword = () => {
@@ -16,7 +16,7 @@ const ForgotPassword = () => {
             }, (3000));
         }
         try {
-            await axiosRequest.post('/users/forgotEmail', {email})
+            await axios.post('/users/forgotEmail', {email})
             setEmail('')
             setSuccess(`Email sent to ${email}. Check it out.`)
             return setTimeout(()=>{

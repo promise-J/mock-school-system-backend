@@ -1,9 +1,9 @@
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import axios from 'axios';
 // import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { axiosRequest } from 'src/utils/axiosRequest';
 
 const ResetPassword = () => {
     const { token } = useParams()
@@ -26,7 +26,7 @@ const ResetPassword = () => {
             }, 3000)
         }
         try {
-            await axiosRequest.post('/users/resetEmail', {password, token})
+            await axios.post('/users/resetEmail', {password, token})
             setData({...data, password: '', cfPassword: '', success: 'Password Changed Successfully'})
         } catch (error) {
             console.log(error)

@@ -1,11 +1,8 @@
 import ACTIONS from "../actions";
-import Cookie from 'universal-cookie'
 
-const cookies = new Cookie()
 
 const initialState = {
   user: null,
-  isLogged: Boolean(cookies.get("loginID")),
   role: null,
 };
 
@@ -24,7 +21,6 @@ const authReducer = (state = initialState, action) => {
         role: action.payload.role,
       };
     case ACTIONS.LOGOUT:
-      cookies.remove("loginID");
       return {
         ...state,
         user: null,

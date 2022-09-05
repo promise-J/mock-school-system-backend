@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { isStudent as studentRole, isPrincipal } from "../../utils/roleChecks";
 import Loading from "../loading/Loading";
 import {useNotify} from '../../customHooks'
-import { axiosRequest } from "src/utils/axiosRequest";
 
 function CreateStudent(props) {
   const { role: userRole } = useSelector((state) => state.auth);
@@ -73,7 +72,7 @@ function CreateStudent(props) {
   useEffect(() => {
     const getUser = async () => {
       setLoading(true);
-      const { data } = await axiosRequest.get(`/users/${studentID}`);
+      const { data } = await axios.get(`/users/${studentID}`);
       setEditData({
         eFirstName: data?.firstName,
         eLastName: data?.lastName,
@@ -94,7 +93,7 @@ function CreateStudent(props) {
 
   useEffect(() => {
     const getClasses = async () => {
-      const res = await axiosRequest.get("/class");
+      const res = await axios.get("/class");
       setClasses(res.data.classes);
     };
     getClasses();
@@ -121,7 +120,7 @@ function CreateStudent(props) {
     }
 
     try {
-      await axiosRequest.post("/users", {
+      await axios.post("/users", {
         loginID,
         phoneNumber,
         password,
@@ -148,7 +147,7 @@ function CreateStudent(props) {
     //   setEditData({...editData, eLoginID: '', ePassword: ''})
     // }
     try {
-      await axiosRequest.put(`/users/${studentID}`, {
+      await axios.put(`/users/${studentID}`, {
         phoneNumber: ePhoneNumber,
         firstName: eFirstName,
         lastName: eLastName,

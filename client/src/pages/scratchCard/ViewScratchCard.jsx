@@ -1,8 +1,7 @@
 import { Check, Clear, DeleteOutline } from '@material-ui/icons';
-// import axios from 'axios';
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { axiosRequest } from 'src/utils/axiosRequest';
 import Layout from '../../components/Layout/Layout';
 import Loading from '../../components/loading/Loading';
 import Pagination from '../../components/pagination/Pagination';
@@ -20,7 +19,7 @@ const ViewScratchCard = () => {
   useEffect(()=>{
     const getScratch = async()=>{
       setLoading(true)
-      const res = await axiosRequest.get(`/scratch?page=${pageNumber}`)
+      const res = await axios.get(`/scratch?page=${pageNumber}`)
       setScratchs(res.data.cards)
       setNoOfPages(res.data.totalPages)
       setLoading(false)
@@ -41,7 +40,7 @@ const ViewScratchCard = () => {
   const deleteCard = async(id)=>{
       setScratchs(scratchs.filter(s=> s.id !== id))
       try {
-          await axiosRequest.delete(`/scratch/${id}`)
+          await axios.delete(`/scratch/${id}`)
         } catch (error) {
         console.log(error)
     }
@@ -54,7 +53,7 @@ const ViewScratchCard = () => {
     <div className="content">
     <Link style={{border: '1px solid gray', margin: '10px', padding: 2, fontSize: 11}} to='/requestCard'>Purchase Cards!</Link>
     <h1>View Scratch Card</h1>
-    { scratchs.length > 0 &&  <>
+    { scratchs?.length > 0 &&  <>
         <table>
             <thead>
             <tr>
@@ -67,7 +66,7 @@ const ViewScratchCard = () => {
             </thead>
             <tbody>
             {
-                scratchs.map(s=>(
+                scratchs?.map(s=>(
                 <tr key={s?._id}>
                     <td>{s?.card}</td>
                     <td style={{color: s?.usageCount > 1 ? 'red': 'green', fontWeight: 600}}>{s?.usageCount}</td>

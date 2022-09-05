@@ -1,11 +1,10 @@
-// import axios from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import Loading from "../loading/Loading";
 import {useNotify} from '../../customHooks'
 import { isPrincipal } from "src/utils/roleChecks";
-import { axiosRequest } from "src/utils/axiosRequest";
 
 function EditClass() {
   const { classID } = useParams();
@@ -22,7 +21,7 @@ function EditClass() {
   const { role } = useSelector((state) => state.auth);
 
   const getSingleClass = async () => {
-    const res = await axiosRequest.get(`/class/${classID}`);
+    const res = await axios.get(`/class/${classID}`);
     setName(res.data.name);
     setCode(res.data.code);
 
@@ -33,7 +32,7 @@ function EditClass() {
 
   const getAllSubjects = async () => {
     try {
-      const res = await axiosRequest.get("/subject");
+      const res = await axios.get("/subject");
       setAllSubjects(res.data.subjects);
     } catch (error) {
       console.log(error);
@@ -78,7 +77,7 @@ function EditClass() {
       setUpdating(true);
 
       try {
-        await axiosRequest.put(`/class/${classID}`, {
+        await axios.put(`/class/${classID}`, {
           subjects: editSubjects,
           name,
           code,

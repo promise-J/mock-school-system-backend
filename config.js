@@ -1,6 +1,5 @@
 const path = require("path");
 
-const Environment = process.env.NODE_ENV || "development";
 
 if (process.env.NODE_ENV !== "production") {
   const dotenv = require("dotenv");
@@ -8,6 +7,7 @@ if (process.env.NODE_ENV !== "production") {
     path: path.join(__dirname, ".env"),
   });
 }
+const Environment = process.env.NODE_ENV || "development";
 
 const requireProcessEnv = (name) => {
   if (!process.env[name]) {

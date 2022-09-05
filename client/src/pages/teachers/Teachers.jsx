@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import { Link } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 import Pagination from "../../components/pagination/Pagination";
 import { useSelector } from "react-redux";
 import { DeleteOutline, EditOutlined } from "@material-ui/icons";
 import Loading from "../../components/loading/Loading";
-import { axiosRequest } from "src/utils/axiosRequest";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
@@ -21,7 +20,7 @@ const Teachers = () => {
   useEffect(() => {
     const getTeachers = async () => {
       setLoading(true);
-      const { data } = await axiosRequest.get(
+      const { data } = await axios.get(
         `/users/all/teachers?page=${pageNumber}`
       );
       const { teachers, totalPages } = data;
@@ -44,7 +43,7 @@ const Teachers = () => {
 
   const deleteItem = async (id) => {
     try {
-      await axiosRequest.delete(`/users/${id}`);
+      await axios.delete(`/users/${id}`);
       setTeachers(teachers.filter((s) => s.id !== id));
       setCb(!cb);
     } catch (error) {
@@ -61,7 +60,7 @@ const Teachers = () => {
       ) : (
         <div className="dashboard" style={{ padding: "0 40px" }}>
           <>
-            {teachers.length > 0 ? (
+            {teachers?.length > 0 ? (
               <>
                 <h1 className="dashboardBodyHeading">
                   All Registered Teachers
@@ -114,7 +113,7 @@ const Teachers = () => {
             <Link className="viewClassLink" to="/createUser">
               Register Teacher
             </Link>
-            {teachers.length > 0 && (
+            {teachers?.length > 0 && (
               <Pagination
                 noOfPages={noOfPages}
                 prevPage={prevPage}

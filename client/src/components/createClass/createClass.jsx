@@ -6,7 +6,6 @@ import "./createClass.css";
 import { useSelector } from "react-redux";
 import Loading from "../loading/Loading";
 import {useNotify} from '../../customHooks'
-import { axiosRequest } from "src/utils/axiosRequest";
 import axios from "axios";
 // import Alert from '../alert/Alert';
 /* eslint-disable */
@@ -66,7 +65,7 @@ function CreateClass() {
     e.preventDefault();
     try {
       //   const res =
-      await axiosRequest.post("/class", { subjects, name: name.toUpperCase(), code });
+      await axios.post("/class", { subjects, name: name.toUpperCase(), code });
       // setSuccess("Class Created");
       notify('success', 'Class Created')
       setSubjects([]);

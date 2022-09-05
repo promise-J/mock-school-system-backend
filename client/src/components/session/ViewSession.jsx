@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from "@material-ui/icons";
-// import axios from "axios";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,7 +7,6 @@ import Loading from "../loading/Loading";
 import Pagination from "../pagination/Pagination";
 import {useNotify} from '../../customHooks'
 import { isPrincipal } from "src/utils/roleChecks";
-import { axiosRequest } from "src/utils/axiosRequest";
 
 function ViewSession() {
   const notify = useNotify()
@@ -25,7 +24,7 @@ function ViewSession() {
     if (isPrincipal(role)) {
       const getSessions = async () => {
         setLoading(true);
-        const res = await axiosRequest.get(`/session/all/session?page=${pageNumber}`);
+        const res = await axios.get(`/session/all/session?page=${pageNumber}`);
         setSessions(res.data.sessions);
         setNoOfPages(res.data.totalPages);
         setLoading(false);
@@ -44,7 +43,7 @@ function ViewSession() {
   const deleteItem = async (id) => {
     setSessions(sessions.filter(s=> s._id !== id))
     try {
-      const res = await axiosRequest.delete(`/session/${id}`);
+      const res = await axios.delete(`/session/${id}`);
       notify('success', res.data)
     } catch (error) {
       console.log(error);
@@ -60,7 +59,7 @@ function ViewSession() {
   // if (role !== "superuser") return <h1>You are not allowed to view this</h1>;
   return (
     <div className="dashboard">
-      {sessions.length > 0 ? (
+      {sessions?.length > 0 ? (
         <>
           <h1 className="dashboardBodyHeading">All Sessions</h1>
           <table className="viewClassTable">
@@ -104,7 +103,7 @@ function ViewSession() {
       <Link className="viewClassLink" to="/createSession">
         Create Session
       </Link>
-      {sessions.length > 0 && (
+      {sessions?.length > 0 && (
         <Pagination
           noOfPages={noOfPages}
           prevPage={prevPage}
