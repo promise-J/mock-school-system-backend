@@ -23,7 +23,7 @@ function Header() {
     setToggle((state) => !state);
     try {
       await axios.get("/users/logout");
-      // localStorage.removeItem("firstLogin");
+      window.localStorage.removeItem("isLogged");
       dispatch(dispatchLogout());
       history.push("/");
     } catch (error) {
@@ -56,29 +56,29 @@ function Header() {
             <>
               {" "}
               <h2>Dashboard</h2>
-              <ul>
-                <Link onClick={handleMenu} to="/viewClass">
+              <ul onClick={handleMenu}>
+                <Link to="/viewClass">
                   <li>Manage Classes</li>
                 </Link>
-                <Link onClick={handleMenu} to="/viewStudent">
+                <Link to="/viewStudent">
                   <li>Manage Students</li>
                 </Link>
-                <Link onClick={handleMenu} to="/viewSubject">
+                <Link to="/viewSubject">
                   <li>Manage Subjects</li>
                 </Link>
-                <Link onClick={handleMenu} to="/viewTeachers">
+                <Link to="/viewTeachers">
                   <li>Manage Teachers</li>
                 </Link>
-                <Link onClick={handleMenu} to="/viewResult">
+                <Link to="/viewResult">
                   <li>Manage Results</li>
                 </Link>
-                <Link onClick={handleMenu} to="/viewSession">
+                <Link to="/viewSession">
                   <li>Manage Sessions</li>
                 </Link>
-                <Link onClick={handleMenu} to="/adminPassword">
+                <Link to="/adminPassword">
                   <li>App Admin Settings</li>
                 </Link>
-                <Link onClick={handleMenu} to="/staffMessage">
+                <Link to="/staffMessage">
                   <li>Messages</li>
                 </Link>
                 <li style={{ cursor: "pointer" }} onClick={handleMenuLogout}>
@@ -89,42 +89,30 @@ function Header() {
           ) : (
             <>
               <h2>Resonance Academy</h2>
-              <ul>
-                <Link className="link" onClick={handleMenu} to="/">
+              <ul onClick={handleMenu}>
+                <Link className="link" to="/">
                   <li>Home</li>
                 </Link>
-                <Link onClick={handleMenu} to="/clubs">
+                <Link to="/clubs">
                   <li>Gallery</li>
                 </Link>
-                <Link onClick={handleMenu} to="/enquire">
+                <Link to="/enquire">
                   <li>Contact</li>
                 </Link>
-                <Link onClick={handleMenu} to="/">
-                  <li>News</li>
+                <Link to="/student-dashboard">
+                  <li>Students</li>
                 </Link>
-                <Link onClick={handleMenu} to="/">
+                <Link to="/">
                   <li>About</li>
                 </Link>
-                <Link className="link" onClick={handleMenu} to="/login">
+                <Link className="link" to="/login">
                   <li>Portal</li>
                 </Link>
               </ul>
             </>
           )}
         </div>
-        {isLogged ? (
-          <div className="header-link">
-            <Link className="link" to="/viewClass">
-              Classes
-            </Link>
-            <Link className="link" to="/viewResult">
-              Results
-            </Link>
-            <Link className="link" to="/viewStudent">
-              Students
-            </Link>
-          </div>
-        ) : (
+        {!isLogged && (
           <div className="header-link">
             <Link className="link" to="/">
               Home
@@ -132,8 +120,8 @@ function Header() {
             <Link className="link" to="/clubs">
               About
             </Link>
-            <Link className="link" to="/clubs">
-              News
+            <Link className="link" to="/student-dashboard">
+              Students
             </Link>
             <Link className="link" to="/clubs">
               Gallery

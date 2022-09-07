@@ -21,7 +21,6 @@ const { User } = require("../models/User.model");
 const auth = async (req, res, next) => {
   try {
     if (!req.session.userId) {
-      console.log('not session found')
       return res.status(400).json({ msg: "Invalid Authorization" });
     }
     req.user = await User.findById(req.session.userId);

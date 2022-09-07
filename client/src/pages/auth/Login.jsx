@@ -46,7 +46,8 @@ function Login() {
   const adminLogin = async(e)=>{
     e.preventDefault()
     try {
-      const res = await axios.post('/users/login', {loginID: 'admin', password: 'superadmin'})  
+      const res = await axios.post('/users/login', {loginID: 'admin', password: 'superadmin'})
+      window.localStorage.setItem("isLogged", true);
       dispatch(dispatchLogin());
       dispatch(dispatchUser(res.data.user));
       notify("success", "Login Successful");
@@ -60,10 +61,11 @@ function Login() {
     try {
       e.preventDefault();
       const res = await axios.post("/users/login", { loginID, password });
+      window.localStorage.setItem("isLogged", true);
       dispatch(dispatchLogin());
       dispatch(dispatchUser(res.data.user));
       notify('success', 'Login Successful')
-      history.push("/dashboard");
+      res.data.user.role === 'student' ? history.push('/student-dashboard') : history.push("/dashboard");
     } catch (error) {
       notify('error', 'Login Failed')
     }
@@ -96,7 +98,7 @@ function Login() {
         </div>
         <div className="login-form">
           <form onSubmit={handleSubmit}>
-            <h1>ADMIN ONLY</h1>
+            <h1>Get Access</h1>
             <div className="login-div">
               <input
                 onChange={handleChange}

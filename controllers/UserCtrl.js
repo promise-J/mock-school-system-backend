@@ -46,7 +46,7 @@ const userCtrl = {
       // INouts Validation (move to its own side)
       if (!role) return res.status(400).json({ msg: "Fields must not empty" });
       if ((!password || !req.body.loginID) && role === Role.TEACHER) {
-        return res.status(400).json({ msg: "Fields must not empty" });
+        return res.status(400).json({ msg: "Fields must not be empty" });
       }
       // if (!req.body.classId && req.user.role === Role.SUPERUSER) {
       //   return res.status(400).json({ msg: "Fields must not empty" });
@@ -210,17 +210,23 @@ const userCtrl = {
   login: async (req, res) => {
     try {
       const { loginID, password } = req.body;
-      if (!loginID || !password)
-        return res.status(400).json("Fields must not be empty");
+      if (!loginID) return res.status(400).json("Fields must not be empty");
       const user = await User.findOne({ loginID });
       if (!user) return res.status(400).json("No user found");
 
-      const isMatch = user.verifyPassword(password);
-      if (!isMatch) return res.status(400).json("Password is incorrect");
-           req.session.userId = user.id;
-           req.session.accessTime = new Date();
-           await req.session.save();
-           return res.status(200).json({ user: user, msg: "Login successful" });
+      if(password){
+        const isMatch = user.verifyPassword(password);
+        if (!isMatch) return res.status(400).json("Password is incorrect");
+        req.session.userId = user.id;
+        req.session.accessTime = new Date();
+        await req.session.save();
+        return res.status(200).json({ user: user, msg: "Login successful" });
+      }else{
+        req.session.userId = user.id;
+        req.session.accessTime = new Date();
+        await req.session.save();
+        return res.status(200).json({ user: user, msg: "Login successful" });
+      }
 
     } catch (error) {
       console.log(error);

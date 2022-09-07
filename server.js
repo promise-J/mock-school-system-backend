@@ -30,7 +30,8 @@ const app = express();
 
 app.set("port", port);
 app.set("trust proxy", 1);
-app.use(cors({origin: "*", credentials: true}))
+// app.use(cors({origin: "*", credentials: true}))
+app.use(cors({origin: ['http://localhost:3000'], credentials: true}))
 
 
 app.use(
@@ -101,7 +102,6 @@ if (Environment === "production") {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
-
 // var http = require("http");
 // setInterval(function() {
 //     http.get("http://<your app name>.herokuapp.com");

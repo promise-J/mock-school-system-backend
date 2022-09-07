@@ -1,4 +1,8 @@
 import { useEffect } from "react";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
 import Homepage from "./pages/homepage/Homepage";
 import { Switch, Route } from "react-router-dom";
@@ -49,13 +53,16 @@ import ResetPassword from "./components/passwordReset/ResetPassword";
 import ViewScratchCard from "./pages/scratchCard/ViewScratchCard";
 import RequestCard from "./pages/scratchCard/RequestCard";
 import Notifications from "./components/notifications";
+import StudentDashboard from "./pages/studentDashboard/StudentDashboard";
 
 // import Loading from "./components/loading/Loading";
 
 function App() {
+  const { user } = useSelector((state) => state.auth);
+  const queryClient = new QueryClient();
   const dispatch = useDispatch();
   const [fetching, setFetching] = useState(true);
-  const {REACT_APP_CLIENT_URL} = process.env;
+  const { REACT_APP_CLIENT_URL } = process.env;
   const PF = REACT_APP_CLIENT_URL;
 
   useEffect(() => {
@@ -73,13 +80,13 @@ function App() {
       delay: 50,
       easing: "ease-in-sine",
       // disable: "mobile",
-      once: true
+      once: true,
     });
   }, []);
 
-  const { user, isLogged } = useSelector((state) => state.auth);
   useEffect(() => {
-    if (!user && isLogged) {
+    const logged = localStorage.getItem("isLogged");
+    if (!user && logged) {
       const getUser = async () => {
         dispatch(dispatchLogin());
         return fetchUser().then((user) => {
@@ -112,58 +119,67 @@ function App() {
   return (
     <div className="App">
       <Notifications />
-      <Switch>
-        <Route component={Homepage} path="/" exact />
-        <Route component={Enquiry} path="/enquiry" exact />
-        <Route component={Club} path="/clubs" exact />
-        <Route component={Prefect} path="/prefects" exact />
-        <Route component={Welcome} path="/welcome" exact />
-        <Route component={StudentLogin} path="/resultSearch" exact />
-        <Route component={Login} path="/login" exact />
-        <Route component={ForgotPassword} path="/forgotPassword" exact />
-        <Route component={ResetPassword} path="/user/reset/:token" exact />
+      <QueryClientProvider client={queryClient}>
+        <Switch>
+          <Route component={Homepage} path="/" exact />
+          <Route component={Enquiry} path="/enquiry" exact />
+          <Route component={Club} path="/clubs" exact />
+          <Route component={Prefect} path="/prefects" exact />
+          <Route component={Welcome} path="/welcome" exact />
+          <Route component={StudentLogin} path="/resultSearch" exact />
+          <Route component={Login} path="/login" exact />
+          <Route component={ForgotPassword} path="/forgotPassword" exact />
+          <Route component={ResetPassword} path="/user/reset/:token" exact />
 
-        {/* Student Routes */}
+          {/* Student Routes */}
 
-        <StudentRoute component={ResultTemplate} path="/studentResult" exact />
-        <StudentRoute component={ResultCheck} path="/resultCheck/" exact />
-        {/* Admin Routes */}
+          <StudentRoute
+            component={ResultTemplate}
+            path="/studentResult"
+            exact
+          />
+          <StudentRoute component={ResultCheck} path="/resultCheck/" exact />
+          <StudentRoute component={StudentDashboard} path="/student-dashboard" exact />
+          <StudentRoute component={StudentDashboard} path="/student-exam" exact />
+          <StudentRoute component={StudentDashboard} path="/student-result" exact />
+          {/* Admin Routes */}
 
-        <AdminRoute path="/dashboard" component={Dashboard} />
-        <AdminRoute path="/staffMessage" component={StaffMessage} />
-        <AdminRoute path="/viewClass" component={ClassView} />
-        <AdminRoute path="/viewResult/:resultID" component={SingleResult} />
-        <AdminRoute path="/viewResult" component={ViewResultPage} />
-        <AdminRoute path="/createResult" component={CreateResultPage} />
-        <AdminRoute
-          path="/createUser/:studentID"
-          component={CreateStudentPage}
-        />
-        <AdminRoute path="/createUser" component={CreateStudentPage} />
-        <AdminRoute path="/viewStudent" component={ViewStudentPage} />
+          <AdminRoute path="/dashboard" component={Dashboard} />
+          <AdminRoute path="/staffMessage" component={StaffMessage} />
+          <AdminRoute path="/viewClass" component={ClassView} />
+          <AdminRoute path="/viewResult/:resultID" component={SingleResult} />
+          <AdminRoute path="/viewResult" component={ViewResultPage} />
+          <AdminRoute path="/createResult" component={CreateResultPage} />
+          <AdminRoute
+            path="/createUser/:studentID"
+            component={CreateStudentPage}
+          />
+          <AdminRoute path="/createUser" component={CreateStudentPage} />
+          <AdminRoute path="/viewStudent" component={ViewStudentPage} />
 
-        {/* Principal Only Routes */}
+          {/* Principal Only Routes */}
 
-        <PrincipalRoute path="/adminPassword" component={AdminPassword} />
-        <PrincipalRoute path="/viewTeachers" component={Teachers} />
-        <PrincipalRoute path="/editClass/:classID" component={ClassEdit} />
-        <PrincipalRoute path="/createClass" component={ClassCreate} />
-        <PrincipalRoute
-          path="/createSubject/:subjectID"
-          component={CreateSubjectPage}
-        />
-        <PrincipalRoute path="/createSubject" component={CreateSubjectPage} />
-        <PrincipalRoute path="/viewSubject" component={ViewSubjectPage} />
-        <PrincipalRoute path="/viewSession" component={ViewSessionPage} />
-        <PrincipalRoute
-          path="/createSession/:sessionID"
-          component={CreateSessionPage}
-        />
-        <PrincipalRoute path="/createSession" component={CreateSessionPage} />
-        <PrincipalRoute path="/viewScratch" component={ViewScratchCard} />
-        <PrincipalRoute path="/requestCard" component={RequestCard} />
-        <Route component={NotFound} />
-      </Switch>
+          <PrincipalRoute path="/adminPassword" component={AdminPassword} />
+          <PrincipalRoute path="/viewTeachers" component={Teachers} />
+          <PrincipalRoute path="/editClass/:classID" component={ClassEdit} />
+          <PrincipalRoute path="/createClass" component={ClassCreate} />
+          <PrincipalRoute
+            path="/createSubject/:subjectID"
+            component={CreateSubjectPage}
+          />
+          <PrincipalRoute path="/createSubject" component={CreateSubjectPage} />
+          <PrincipalRoute path="/viewSubject" component={ViewSubjectPage} />
+          <PrincipalRoute path="/viewSession" component={ViewSessionPage} />
+          <PrincipalRoute
+            path="/createSession/:sessionID"
+            component={CreateSessionPage}
+          />
+          <PrincipalRoute path="/createSession" component={CreateSessionPage} />
+          <PrincipalRoute path="/viewScratch" component={ViewScratchCard} />
+          <PrincipalRoute path="/requestCard" component={RequestCard} />
+          <Route component={NotFound} />
+        </Switch>
+      </QueryClientProvider>
     </div>
   );
 }

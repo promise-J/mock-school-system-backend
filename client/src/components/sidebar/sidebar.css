@@ -3,16 +3,17 @@
     width: 22%;
     position: sticky;
     top: 55px;
+    overflow-y: auto;
     height: calc(100vh - 55px);
     border-right: 1px solid rgb(221, 218, 218);
-    background: rgb(236, 236, 241);
+    background: rgb(50,6,74);
 }
 
 .sidebarWrapper{
     /* background: red; */
     height: 100%;
-    padding: 20px;
-    width: 90%;
+    padding: 10px;
+    width: 100%;
 }
 
 .sidebar .profile{
@@ -41,22 +42,29 @@
 
 .sidebar .sidebarList{
     list-style: none;
-    padding-left: 10px;
+    /* padding-left: 10px; */
+    /* background-color: blue; */
+    width: 100%;
+    margin-top: 50px;
+    padding-bottom: 40px;
 }
 
 .sidebar .sidebarListItem{
-    margin: 5px 0;
+    margin: 15px 0;
     display: flex;
     align-items: center;
-    font-weight: 400;
-    padding: 3px 10px;
-    font-size: 13px;
-    border-radius: 10px;
+    font-weight: 600;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    border-radius: 6px;
     cursor: pointer;
+    color: white;
+    letter-spacing: 0.1px;
+    /* background-color: green; */
 }
 
 .sidebar .sidebarListItem:hover, .sidebar .sidebarListItem.active{
-    background: rgb(220, 220, 247);
+    background-color: rgb(229,107,31);
 }
 
 .sidebar .sidebarListItemIcon{

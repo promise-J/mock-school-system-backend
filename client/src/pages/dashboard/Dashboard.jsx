@@ -11,23 +11,34 @@ import { Link } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import { isPrincipal } from "../../utils/roleChecks";
 import axios from "axios";
+// import {
+//   useQuery,
+// } from "@tanstack/react-query";
 
 // eslint-disable-next-line
 function Dashboard() {
   const { user, role } = useSelector((state) => state.auth);
 
+  const getClasses = async () => {
+    try {
+      const res = await axios.get("/stats");
+      setStats(res.data.stats);
+    } catch (error) {
+    }
+  };
   const [stats, setStats] = useState(null);
   useEffect(() => {
-    const getClasses = async () => {
-      try {
-        const res = await axios.get("/stats");
-        setStats(res.data.stats);
-      } catch (error) {
-      }
-    };
     getClasses();
   }, []);
-
+  
+  // const data = useQuery(['stats'], async()=>{
+  //   try {
+  //     return await axios.get('/stats')
+  //   } catch (error) {
+  //     return new Error(error)
+  //   }
+  // })
+  // console.log(data.data, 'from the query')
 
   return (
     <>

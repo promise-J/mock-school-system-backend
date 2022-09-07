@@ -1,14 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;500;600&display=swap");
+
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0;
-  box-sizing: border-box;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
 
 .App {
   height: 100vh;
@@ -45,7 +50,7 @@ button {
   border: none;
 }
 
-.del-btn{
+.del-btn {
   padding: 4px;
   border-radius: 50%;
   color: red;
@@ -53,11 +58,11 @@ button {
   font-size: 24px;
   font-weight: 600;
 }
-.del-btn:hover{
+.del-btn:hover {
   background: red;
   color: white;
 }
-.edit-btn{
+.edit-btn {
   font-size: 24px;
   cursor: pointer;
   color: green;
@@ -65,7 +70,7 @@ button {
   padding: 4px;
   font-weight: 600;
 }
-.edit-btn:hover{
+.edit-btn:hover {
   background: green;
   color: white;
 }
@@ -81,7 +86,7 @@ button.loading {
   background-image: url("./images/btn-spinner.gif");
 }
 
-.image-loader{
+.image-loader {
   margin: 22% 40%;
   animation: imageLoaderScale 2s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
   height: 150px;
@@ -89,98 +94,96 @@ button.loading {
 }
 
 @keyframes imageLoaderScale {
-  0%{
+  0% {
     opacity: 1;
-    transform: scale(1.2)
-  }100%{
+    transform: scale(1.2);
+  }
+  100% {
     opacity: 0.2;
-    transform: scale(1)
+    transform: scale(1);
   }
 }
 
 @import url("./components//createClass/createClass.css");
 
-
-
 @media screen and (max-width: 800px) {
-  .header .header-link{
+  .header .header-link {
     display: none !important;
   }
-  .header{
+  .header {
     justify-content: flex-end;
   }
-  .header .portal-link{
+  .header .portal-link {
     font-size: 15px !important;
     display: none;
     /* color: red; */
   }
-  .header .logo img{
+  .header .logo img {
     width: 34px !important;
     height: 34px !important;
   }
-  a.viewClassLink{
+  a.viewClassLink {
     /* color: red; */
     font-size: 15px;
   }
-  .header .headerMenu{
+  .header .headerMenu {
     font-size: 16px !important;
   }
-  .dashboard h1{
+  .dashboard h1 {
     font-size: 20px !important;
   }
-  .dashboard .dashboardBodyHeading{
+  .dashboard .dashboardBodyHeading {
     font-size: 12px !important;
     text-align: center !important;
   }
-  .createClassForm h2{
+  .createClassForm h2 {
     font-size: 17px;
   }
-  .sidebar{
+  .sidebar {
     display: none;
     width: 0;
   }
-  .viewClassTable{
+  .viewClassTable {
     margin: 10px;
     width: 100%;
   }
-  .viewClassTable td{
+  .viewClassTable td {
     font-size: 10px !important;
     /* color: red; */
   }
-  .MuiSvgIcon-root{
+  .MuiSvgIcon-root {
     font-size: 15px !important;
   }
-  .dashboard{
+  .dashboard {
     width: 100%;
     /* background: yellow; */
   }
-  .loading{
+  .loading {
     animation: spinSm 2s linear infinite !important;
   }
-  .recommendations .recommendation p{
+  .recommendations .recommendation p {
     font-size: 19px !important;
   }
-  .studentLogin .studentLoginContainer form h1{
+  .studentLogin .studentLoginContainer form h1 {
     font-size: 20px;
   }
-  .studentLogin .studentLoginContainer form h3{
+  .studentLogin .studentLoginContainer form h3 {
     font-size: 17px;
   }
-  .studentLogin .studentLoginContainer form{
+  .studentLogin .studentLoginContainer form {
     width: 80%;
     margin: 0 20px;
     margin: auto;
   }
-  
 }
 
 @media screen and (min-width: 800px) {
- .headerMenu{
-   display: none;
-   opacity: 0;
- }
- .menuPlane{
-   display: none;
-   background: blue;
- }
+  .headerMenu {
+    display: none;
+    opacity: 0;
+  }
+  .menuPlane {
+    display: none;
+    background: blue;
+  }
 }
