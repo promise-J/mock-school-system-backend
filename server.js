@@ -104,7 +104,7 @@ if (Environment === "production") {
 }
 // var http = require("http");
 // setInterval(function() {
-//     http.get("http://<your app name>.herokuapp.com");
+//     http.get("https://resonancee.herokuapp.com");
 // }, 300000); // every 5 minutes (300000)
 
 app.post("/scratch", async (req, res) => {

@@ -80,6 +80,17 @@ const Sidebar = ({student}) => {
                   <Feedback className="sidebarListItemIcon" /> Manage Results
                 </li>
               </Link>
+              <Link to="/createQuestion" className="link">
+                <li
+                  className={
+                    location === "createQuestion"
+                      ? "sidebarListItem active"
+                      : "sidebarListItem"
+                  }
+                >
+                  <Home className="sidebarListItemIcon" /> Create Question
+                </li>
+              </Link>
               {isPrincipal(role) && (
                 <>
                   <Link to="/viewSubject" className="link">

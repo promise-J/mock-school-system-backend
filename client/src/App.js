@@ -54,6 +54,7 @@ import ViewScratchCard from "./pages/scratchCard/ViewScratchCard";
 import RequestCard from "./pages/scratchCard/RequestCard";
 import Notifications from "./components/notifications";
 import StudentDashboard from "./pages/studentDashboard/StudentDashboard";
+import CreateQuestion from "./pages/CreateExam/CreateQuestion";
 
 // import Loading from "./components/loading/Loading";
 
@@ -62,8 +63,8 @@ function App() {
   const queryClient = new QueryClient();
   const dispatch = useDispatch();
   const [fetching, setFetching] = useState(true);
-  const { REACT_APP_CLIENT_URL } = process.env;
-  const PF = REACT_APP_CLIENT_URL;
+  // const { REACT_APP_CLIENT_URL } = process.env;
+  // const PF = REACT_APP_CLIENT_URL;
 
   useEffect(() => {
     window.scrollTo({
@@ -108,7 +109,7 @@ function App() {
         {/* <Loading /> */}
         <img
           className="image-loader"
-          src={PF + "/images/solu.jpg"}
+          src={"./images/btn-spinner.gif"}
           alt="solution page"
         />
       </div>
@@ -141,7 +142,7 @@ function App() {
           <StudentRoute component={ResultCheck} path="/resultCheck/" exact />
           <StudentRoute component={StudentDashboard} path="/student-dashboard" exact />
           <StudentRoute component={StudentDashboard} path="/student-exam" exact />
-          <StudentRoute component={StudentDashboard} path="/student-result" exact />
+          <StudentRoute component={StudentDashboard} path="/student-dashboard" exact />
           {/* Admin Routes */}
 
           <AdminRoute path="/dashboard" component={Dashboard} />
@@ -156,6 +157,7 @@ function App() {
           />
           <AdminRoute path="/createUser" component={CreateStudentPage} />
           <AdminRoute path="/viewStudent" component={ViewStudentPage} />
+          <AdminRoute path="/createQuestion" component={CreateQuestion} />
 
           {/* Principal Only Routes */}
 

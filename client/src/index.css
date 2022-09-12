@@ -154,10 +154,9 @@ button.loading {
   .MuiSvgIcon-root {
     font-size: 15px !important;
   }
-  .dashboard {
+  /* .dashboard {
     width: 100%;
-    /* background: yellow; */
-  }
+  } */
   .loading {
     animation: spinSm 2s linear infinite !important;
   }

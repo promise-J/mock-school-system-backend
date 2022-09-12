@@ -2,6 +2,7 @@
     /* flex: 0.24; */
     width: 22%;
     position: sticky;
+    /* position: fixed; */
     top: 55px;
     overflow-y: auto;
     height: calc(100vh - 55px);
