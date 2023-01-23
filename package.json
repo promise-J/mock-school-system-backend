@@ -8,6 +8,7 @@
   },
   "scripts": {
     "setup": "node setup.js",
+    "bothsides": "npm run dev && cd client && npm start",
     "start": "npm run setup && node server.js",
     "dev": "npm run setup && nodemon server.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"

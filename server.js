@@ -95,13 +95,13 @@ app.use("/scratch", ScratchRoute);
 app.use("/message", MessageRoute);
 
 
-if (Environment === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
+// if (Environment === "production") {
+//   app.use(express.static(path.join(__dirname, "client/build")));
 
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"));
-  });
-}
+//   app.get("*", function (req, res) {
+//     res.sendFile(path.join(__dirname, "client/build", "index.html"));
+//   });
+// }
 // var http = require("http");
 // setInterval(function() {
 //     http.get("https://resonancee.herokuapp.com");
