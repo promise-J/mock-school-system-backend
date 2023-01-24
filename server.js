@@ -28,14 +28,14 @@ const { Scratch } = require("./models/Scratch.model");
 const db = mongoose.connection;
 const app = express();
 
-app.set("port", port);
-app.set("trust proxy", 1);
 const corsOptions = {
   origin: ["https://mock-school-backend.onrender.com"],
   credentials: true,
   methods: ['GET', 'POST', 'DELETE','UPDATE', 'PUT','PATCH']
 }
 app.use(cors(corsOptions))
+app.set("port", port);
+app.set("trust proxy", 1);
 
 
 app.use(
