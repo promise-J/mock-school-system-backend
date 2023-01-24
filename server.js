@@ -69,10 +69,12 @@ app.use(
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://main--resonance-test.netlify.app");
+  res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Methods", "*");
   next();
 });
+
 
 app.use("/stats", StatsRoute);
 app.use("/users", UserRoute);
