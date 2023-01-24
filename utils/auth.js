@@ -22,7 +22,7 @@ const auth = async (req, res, next) => {
   try {
     const isUserId = req.headers['userId']
     if (!isUserId) {
-      return res.status(400).json({ msg: "Invalid Authorization" });
+      return res.status(400).json({ msg: "Invalid Authorization here oooh" });
     }
     req.user = await User.findById(isUserId);
     next();
