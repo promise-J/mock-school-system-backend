@@ -31,11 +31,10 @@ const app = express();
 app.set("port", port);
 app.set("trust proxy", 1);
 const corsOptions = {
-  origin: "*",
+  origin: ["https://mock-school-backend.onrender.com"],
   credentials: true,
   methods: ['GET', 'POST', 'DELETE','UPDATE', 'PUT','PATCH']
 }
-// app.use(cors({origin: "*", credentials: true}))
 app.use(cors(corsOptions))
 
 
