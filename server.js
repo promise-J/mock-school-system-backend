@@ -1,8 +1,8 @@
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
-const proxy = require('http-proxy-middleware')
 const expImg = require("express-fileupload");
+const httpProxy = require('http-proxy-middleware')
 const cron = require("node-cron");
 const session = require("express-session");
 const { v4: uuidv4 } = require("uuid");
@@ -37,7 +37,7 @@ const corsOptions = {
 
 
 app.use(cors(corsOptions))
-app.use(proxy('/api', { target: 'https://mock-school-backend.onrender.com' }));
+app.use(httpProxy('/api', { target: 'https://mock-school-backend.onrender.com' }));
 // app.set("port", port);
 // app.set("trust proxy", 1);
 
