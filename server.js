@@ -5,6 +5,7 @@ const expImg = require("express-fileupload");
 const cron = require("node-cron");
 const session = require("express-session");
 const { v4: uuidv4 } = require("uuid");
+const proxy = require('http-proxy-middleware')
 
 const mongoose = require("./services/mongoose");
 const MongoStore = require("connect-mongo");
@@ -29,10 +30,13 @@ const db = mongoose.connection;
 const app = express();
 
 const corsOptions = {
-  origin: ["https://mock-school-backend.onrender.com"],
+  origin: "https://mock-school-backend.onrender.com",
   credentials: true,
   methods: ['GET', 'POST', 'DELETE','UPDATE', 'PUT','PATCH']
 }
+
+app.use(proxy('/api', { target: 'https://mock-school-backend.onrender.com' }));
+
 app.use(cors(corsOptions))
 app.set("port", port);
 app.set("trust proxy", 1);
