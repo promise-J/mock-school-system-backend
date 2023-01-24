@@ -20,7 +20,7 @@ const { User } = require("../models/User.model");
 
 const auth = async (req, res, next) => {
   try {
-    const isUserId = req.headers['userid']
+    const isUserId = req.headers['useridddd']
     if (!isUserId) {
       return res.status(400).json({ msg: "Invalid Authorization here oooh" });
     }
