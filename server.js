@@ -30,8 +30,13 @@ const app = express();
 
 app.set("port", port);
 app.set("trust proxy", 1);
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  methods: ['GET', 'POST', 'DELETE','UPDATE', 'PUT','PATCH']
+}
 // app.use(cors({origin: "*", credentials: true}))
-app.use(cors({origin: ['http://localhost:3000'], credentials: true}))
+app.use(cors(corsOptions))
 
 
 app.use(
@@ -50,32 +55,11 @@ app.use(
     },
   })
 );
-
-// app.use(
-//   session({
-//     name: 'schoolID',
-//     secret: secretKey,
-//     resave: true,
-//     saveUninitialized: false,
-//     store: MongoStore.create({
-//       mongoUrl: mongo.uri,
-//       collectionName: "usersessions"
-//     }),
-//     cookie: {
-//       maxAge: 7 * 24 * 60 * 60 * 1000,
-//       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-//       secret: process.env.NODE_ENV === "production",
-//       // secure: true,
-//     },
-//   })
-//   );
   
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   
-  // if (true) {
     
-    // app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
   expImg({
