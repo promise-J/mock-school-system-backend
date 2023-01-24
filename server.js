@@ -31,7 +31,8 @@ const app = express();
 const corsOptions = {
   origin: "https://mock-school-backend.onrender.com",
   credentials: true,
-  methods: ['GET', 'POST', 'DELETE', 'PUT','PATCH']
+  methods: ['GET', 'POST', 'DELETE', 'PUT','PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'userid']
 }
 
 
