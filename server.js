@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const mongoose = require("./services/mongoose");
 const MongoStore = require("connect-mongo");
-const { port, mongo, secretKey, Environment } = require("./config");
+const { port, mongo, secretKey } = require("./config");
 
 
 const {
@@ -35,9 +35,6 @@ const corsOptions = {
 }
 
 
-// app.use(cors(corsOptions))
-// app.set("trust proxy", 1);
-
 
 app.use(
   session({
@@ -55,6 +52,8 @@ app.use(
     },
   })
 );
+
+app.use(cookieParser())
   
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -94,19 +93,6 @@ app.use("/session", SessionRoute);
 app.use("/subject", SubjectRoute);
 app.use("/scratch", ScratchRoute);
 app.use("/message", MessageRoute);
-
-
-// if (Environment === "production") {
-//   app.use(express.static(path.join(__dirname, "client/build")));
-
-//   app.get("*", function (req, res) {
-//     res.sendFile(path.join(__dirname, "client/build", "index.html"));
-//   });
-// }
-// var http = require("http");
-// setInterval(function() {
-//     http.get("https://resonancee.herokuapp.com");
-// }, 300000); // every 5 minutes (300000)
 
 app.post("/scratch", async (req, res) => {
   let arr = [];

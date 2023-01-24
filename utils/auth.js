@@ -20,10 +20,11 @@ const { User } = require("../models/User.model");
 
 const auth = async (req, res, next) => {
   try {
-    if (!req.session.userId) {
+    const isUserId = req.headers['userId']
+    if (!isUserId) {
       return res.status(400).json({ msg: "Invalid Authorization" });
     }
-    req.user = await User.findById(req.session.userId);
+    req.user = await User.findById(isUserId);
     next();
   } catch (error) {
     return res.status(400).json({ msg: error.message });
