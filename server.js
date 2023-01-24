@@ -37,7 +37,7 @@ const corsOptions = {
 
 
 app.use(cors(corsOptions))
-app.use(httpProxy({ target: 'https://mock-school-backend.onrender.com', pathRewrite: {'^/api': ''}, changeOrigin: true }));
+app.use('/api', httpProxy({ target: 'https://mock-school-backend.onrender.com', changeOrigin: true }))
 // app.set("port", port);
 // app.set("trust proxy", 1);
 
