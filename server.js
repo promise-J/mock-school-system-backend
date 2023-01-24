@@ -32,7 +32,7 @@ const corsOptions = {
   origin: "https://mock-school-backend.onrender.com",
   credentials: true,
   methods: ['GET', 'POST', 'DELETE', 'PUT','PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'userid']
+  allowedHeaders: ['Content-Type', 'Authorization', 'userId']
 }
 
 
