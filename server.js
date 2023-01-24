@@ -32,12 +32,12 @@ const app = express();
 const corsOptions = {
   origin: "https://mock-school-backend.onrender.com",
   credentials: true,
-  methods: ['GET', 'POST', 'DELETE','UPDATE', 'PUT','PATCH']
+  methods: ['GET', 'POST', 'DELETE', 'PUT','PATCH']
 }
 
-app.use(proxy('/api', { target: 'https://mock-school-backend.onrender.com' }));
 
 app.use(cors(corsOptions))
+app.use(proxy('/api', { target: 'https://mock-school-backend.onrender.com' }));
 app.set("port", port);
 app.set("trust proxy", 1);
 
