@@ -78,7 +78,7 @@ app.options("*", (req, res) => {
   res.header("Access-Control-Allow-Origin", "https://main--resonance-test.netlify.app");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Headers", "content-type, userid");
-  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, PATCH, DELETE");
   res.status(200).end();
 });
 
