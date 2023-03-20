@@ -29,6 +29,7 @@ const db = mongoose.connection;
 const app = express();
 
 const corsOptions = {
+  // origin: "http://localhost:3000",
   origin: "https://resonance-test.netlify.app",
   credentials: true,
   methods: ['GET', 'POST', 'DELETE', 'PUT','PATCH'],
@@ -67,22 +68,22 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://resonance-test.netlify.app");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Headers", "*");
-  res.header("Access-Control-Allow-Methods", "*");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "https://resonance-test.netlify.app, http://localhost:3000");
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   res.header("Access-Control-Allow-Headers", "*");
+//   res.header("Access-Control-Allow-Methods", "*");
+//   next();
+// });
 
 
-app.options("*", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "https://resonance-test.netlify.app");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Headers", "content-type, userid");
-  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, PATCH, DELETE");
-  res.status(200).end();
-});
+// app.options("*", (req, res) => {
+//   res.header("Access-Control-Allow-Origin", "https://resonance-test.netlify.app, http://localhost:3000");
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   res.header("Access-Control-Allow-Headers", "content-type, userid");
+//   res.header("Access-Control-Allow-Methods", "PUT, GET, POST, PATCH, DELETE");
+//   res.status(200).end();
+// });
 
 
 app.use("/stats", StatsRoute);
