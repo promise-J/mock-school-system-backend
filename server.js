@@ -35,6 +35,8 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization', 'userid']
 }
 
+app.use(cors(corsOptions))
+
 
 
 app.use(
@@ -75,7 +77,7 @@ app.use((req, res, next) => {
 
 
 app.options("*", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "https://main--resonance-test.netlify.app");
+  res.header("Access-Control-Allow-Origin", "https://resonance-test.netlify.app");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Headers", "content-type, userid");
   res.header("Access-Control-Allow-Methods", "PUT, GET, POST, PATCH, DELETE");
